@@ -10,7 +10,7 @@
   
   <title>
     
-      博客迁移通知 | Bermu
+      chrome插件之拒绝广告💆🏻‍♂️ | Bermu
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -138,8 +138,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>博客迁移通知</h2>
-  <p class="post-date">2018-07-18</p>
+  <h2>chrome插件之拒绝广告💆🏻‍♂️</h2>
+  <p class="post-date">2018-07-20</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -147,16 +147,27 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h2 id="博客迁移"><a href="#博客迁移" class="headerlink" title="博客迁移"></a>博客迁移</h2><p>原有的bazinga.cool已到期，由于没有做备份，之前的blog都已丢失，现由2018年7月始，往后于1996.one上更新。</p>
-<p>Thanks!</p>
+    <section class="markdown-content"><h3 id="chrome插件之清除广告"><a href="#chrome插件之清除广告" class="headerlink" title="chrome插件之清除广告"></a>chrome插件之清除广告</h3><p>相信大家都会在浏览某些网站时遇到一些烦人的广告，他们总是占据着你的大部分视觉空间，而当你想关闭它时，总能点开一些不可描述的链接。</p>
+<p>所以！🤬为了干掉他们，我首先学习的一款插件就是针对它们的，那么我们先来想想看广告一般都是由什么构成的呢</p>
+<p>对，一个个dom元素，我们先去访问一些网站找一下规律。不难发现它们的大多构成都是由iframe标签、embed元素嵌套进来，或者是带有特殊id的选择器，由于算法简单，我们无法做到十分精确的识别，但能将大部分广告都<code>display:none</code>掉，这样就会呈现出清爽的界面。</p>
+<p>这时候你可能会问：如果我要访问的网站有重要信息就是被iframe标签包裹该如何处理？</p>
+<p>莫慌！我们需要给自己留条后路</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 设置黑名单</span><br><span class="line">  banList: [</span><br><span class="line">    &quot;iframe&quot;,</span><br><span class="line">    &quot;embed&quot;,</span><br><span class="line">    &quot;ads&quot;</span><br><span class="line">  ],</span><br><span class="line">  // 设置白名单</span><br><span class="line">  whiteList: [</span><br><span class="line">    &quot;www.baidu.com&quot;,</span><br><span class="line">    &quot;www.google.com&quot;</span><br><span class="line">  ],</span><br></pre></td></tr></table></figure>
+<p>我们通过分类出自己想要选择的标签和网站，可以进行二次定义，从而有针对性的避除广告。对于特殊网站进行正则筛选匹配，设立是否运行函数的标志，从而达到清除的目的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 判断是否清除</span><br><span class="line">isFlagAd: function () &#123;</span><br><span class="line">      for(var i = 0; i &lt; this.whiteList.length; i++)&#123;</span><br><span class="line">        var reg = new RegExp(this.whiteList[i]);</span><br><span class="line">        if (reg.test(window.location.href)) &#123;</span><br><span class="line">          this.state = -1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          if (i == this.whiteList.length - 1) &#123;</span><br><span class="line">            this.state = 1;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      return this.state;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>如果因网速加载过慢或者延迟请求的广告，可以这样做</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//为防止ajax异步延时加载的广告隔4s再清除一次</span><br><span class="line">      setTimeout(function() &#123;</span><br><span class="line">        handles.clearAd();</span><br><span class="line">      &#125;, 4000)</span><br></pre></td></tr></table></figure>
+<p>你也可以设置轮询方法，来清除顽劣的弹窗广告！</p>
+<p>最后附上链接 <a href="https://github.com/Kelier/noblock" target="_blank" rel="noopener">戳这里</a></p>
+<p>By: 我是小栗子🕵🏻‍♂️</p>
 </section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#公告" >
-    <span class="tag-code">公告</span>
+  <a href="/tags#chrome插件" >
+    <span class="tag-code">chrome插件</span>
   </a>
 
       </div>
@@ -167,20 +178,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2018/07/18/hello-world/">
+      <a class="nav-left" href="/2018/07/18/1531903706/">
         <span class="nav-arrow">← </span>
         
-          Hello World
+          博客迁移通知
         
       </a>
     
-    
-      <a class="nav-right" href="/2018/07/20/1532059140/">
-        
-          chrome插件之拒绝广告💆🏻‍♂️
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -226,7 +230,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#博客迁移"><span class="toc-nav-text">博客迁移</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#chrome插件之清除广告"><span class="toc-nav-text">chrome插件之清除广告</span></a></li></ol>
     
   </div>
 </aside>
@@ -236,7 +240,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2018/07/18/1531903706/';
+    var url = 'http://yoursite.com/2018/07/20/1532059140/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -292,7 +296,7 @@
     var gitmentConfig = "kelier";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "博客迁移通知",
+        id: "chrome插件之拒绝广告💆🏻‍♂️",
         owner: "kelier",
         repo: "kelier.github.io",
         oauth: {

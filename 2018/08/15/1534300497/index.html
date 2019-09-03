@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="葬在林中的太阳，迷失在黑夜中央">
+  <meta name="keyword" content="technology frontend design life art poem blog change">
+  <meta name="baidu-site-verification" content="qwKiRPgzT1" />
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      gulp4.0配置 | Bermu
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100658331-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-100658331-1');
+</script>
+  
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Bermu</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>gulp4.0配置</h2>
+  <p class="post-date">2018-08-15</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>gulp从3.x到4.0的版本变化十分巨大，一些常用的task api甚至都无法按照传统的方式书写，而gulp虽然一向以简单好用的api著称，但重复配置未免太过笨重。我自己就是受害者（┭┮﹏┭┮），那么还是打一份基础配置到云端，避免下次重新填写的麻烦。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line">// gulpfile.js</span><br><span class="line"></span><br><span class="line">var gulp = require(&apos;gulp&apos;);</span><br><span class="line">var plumber = require(&apos;gulp-plumber&apos;);</span><br><span class="line">var rename = require(&apos;gulp-rename&apos;);</span><br><span class="line">var jshint = require(&apos;gulp-jshint&apos;);</span><br><span class="line">var concat = require(&apos;gulp-concat&apos;);</span><br><span class="line">var babel = require(&apos;gulp-babel&apos;);</span><br><span class="line">var uglify = require(&apos;gulp-uglify&apos;);</span><br><span class="line">var browserSync = require(&apos;browser-sync&apos;);</span><br><span class="line">var cssLint = require(&apos;gulp-csslint&apos;);</span><br><span class="line">var sass = require(&apos;gulp-sass&apos;);</span><br><span class="line">var autoprefixer = require(&apos;gulp-autoprefixer&apos;);</span><br><span class="line">var minifycss = require(&apos;gulp-minify-css&apos;);</span><br><span class="line">var imagemin = require(&apos;gulp-imagemin&apos;);</span><br><span class="line">var cache = require(&apos;gulp-cache&apos;);</span><br><span class="line">var del = require(&apos;del&apos;);</span><br><span class="line"></span><br><span class="line">var browserify = require(&apos;browserify&apos;);</span><br><span class="line">var source = require(&apos;vinyl-source-stream&apos;);</span><br><span class="line"></span><br><span class="line">var JS_SOURCE = &apos;src/javascript&apos;;</span><br><span class="line">var JS_DEST = &apos;dist/javascript&apos;;</span><br><span class="line">var JS_OUTPUT_FILE = &apos;main.js&apos;;</span><br><span class="line">var CSS_SOURCE = &apos;src/css&apos;;</span><br><span class="line">var CSS_DEST = &apos;dist/css&apos;;</span><br><span class="line">var IMAGE_SOURCE = &apos;src/images&apos;;</span><br><span class="line">var IMAGE_DEST = &apos;dist/images&apos;;</span><br><span class="line">var HTML_SOURCE = &apos;src/asset&apos;;</span><br><span class="line">var HTML_DEST = &apos;dist/asset&apos;;</span><br><span class="line">var SERVER_BASE_DIR = &apos;./&apos;;</span><br><span class="line">var WATCH_FILE_EXTENSIONS = &apos;src/asset/*.html&apos;;</span><br><span class="line"></span><br><span class="line">function clean() &#123;</span><br><span class="line">    // You can use multiple globbing patterns as you would with `gulp.src`,</span><br><span class="line">    // for example if you are using del 2.0 or above, return its promise</span><br><span class="line">    return del([&apos;dist&apos;]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function browser() &#123;</span><br><span class="line">    browserSync(&#123;</span><br><span class="line">        ui: &#123;</span><br><span class="line">            port: 8402</span><br><span class="line">        &#125;,</span><br><span class="line">        server: &#123;</span><br><span class="line">            baseDir: SERVER_BASE_DIR,</span><br><span class="line">            index: &apos;track.html&apos;</span><br><span class="line">        &#125;,</span><br><span class="line">        port: 3113</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    // gulp.watch(WATCH_FILE_EXTENSIONS, [&apos;bs-reload&apos;]);</span><br><span class="line">    gulp.watch(WATCH_FILE_EXTENSIONS, browserSync.reload);</span><br><span class="line">    gulp.watch(JS_SOURCE + &apos;/**/*.js&apos;, gulp.series(&apos;javascript&apos;, &apos;pack&apos;));</span><br><span class="line">    gulp.watch(CSS_SOURCE + &apos;/**/*.scss&apos;, gulp.series(&apos;css&apos;));</span><br><span class="line">    gulp.watch(HTML_SOURCE + &apos;/**/*.html&apos;, gulp.series(&apos;html&apos;));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function reload() &#123;</span><br><span class="line">    browserSync.reload();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function javascript() &#123;</span><br><span class="line">    return gulp.src(JS_SOURCE + &apos;/**/*.js&apos;)</span><br><span class="line">        .pipe(plumber(&#123;</span><br><span class="line">            errorHandler: function (error) &#123;</span><br><span class="line">                console.log(error.message);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(jshint())</span><br><span class="line">        .pipe(jshint.reporter(&apos;default&apos;))</span><br><span class="line">        .pipe(concat(JS_OUTPUT_FILE))</span><br><span class="line">        .pipe(babel())</span><br><span class="line">        .pipe(rename(&#123;suffix: &apos;.min&apos;&#125;))</span><br><span class="line">        // .pipe(uglify())</span><br><span class="line">        .pipe(gulp.dest(JS_DEST + &apos;/&apos;))</span><br><span class="line">        .pipe(browserSync.reload(&#123;stream: true&#125;))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function css() &#123;</span><br><span class="line">    return gulp.src(CSS_SOURCE + &apos;/**/*.scss&apos;)</span><br><span class="line">    // .pipe(plumber(&#123;</span><br><span class="line">    //     errorHandler: function (error) &#123;</span><br><span class="line">    //         console.log(error.message);</span><br><span class="line">    //         generator.emit(&apos;end&apos;);</span><br><span class="line">    //     &#125;</span><br><span class="line">    // &#125;))</span><br><span class="line">        .pipe(cssLint())</span><br><span class="line">        .pipe(sass())</span><br><span class="line">        .pipe(autoprefixer(&apos;last 2 versions&apos;))</span><br><span class="line">        .pipe(rename(&#123;suffix: &apos;.min&apos;&#125;))</span><br><span class="line">        // .pipe(minifycss())</span><br><span class="line">        .pipe(gulp.dest(CSS_DEST + &apos;/&apos;))</span><br><span class="line">        .pipe(browserSync.reload(&#123;stream: true&#125;))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function images() &#123;</span><br><span class="line">    return gulp.src(IMAGE_SOURCE + &apos;/**/*&apos;)</span><br><span class="line">    // .pipe(cache(imagemin(&#123;optimizationLevel: 3, progressive: true, interlaced: true&#125;)))</span><br><span class="line">        .pipe(gulp.dest(IMAGE_DEST + &apos;/&apos;));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function html() &#123;</span><br><span class="line">    console.log(&apos;watched html&apos;)</span><br><span class="line">    return gulp.src(HTML_SOURCE + &apos;/**/*&apos;)</span><br><span class="line">        .pipe(gulp.dest(HTML_DEST + &apos;/&apos;));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function watch() &#123;</span><br><span class="line">    gulp.watch(JS_SOURCE + &apos;/**/*.js&apos;, [&apos;javascript&apos;]);</span><br><span class="line">    gulp.watch(CSS_SOURCE + &apos;/**/*.scss&apos;, [&apos;css&apos;]);</span><br><span class="line">    gulp.watch(HTML_SOURCE + &apos;/**/*.html&apos;, [&apos;html&apos;]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// browserify</span><br><span class="line">function pack() &#123;</span><br><span class="line">    var b = browserify(&#123;</span><br><span class="line">        entries: [&quot;src/javascript/track.js&quot;, &quot;src/javascript/utils.js&quot;],</span><br><span class="line">        transform: [&apos;babelify&apos;]</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    return b.bundle()</span><br><span class="line">        .pipe(source(&quot;bundle.js&quot;))</span><br><span class="line">        .pipe(gulp.dest(&quot;dist/js&quot;));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gulp.task(pack);</span><br><span class="line"></span><br><span class="line">gulp.task(clean);</span><br><span class="line">gulp.task(browser);</span><br><span class="line">gulp.task(reload);</span><br><span class="line">gulp.task(javascript);</span><br><span class="line">gulp.task(css);</span><br><span class="line">gulp.task(html);</span><br><span class="line">gulp.task(images);</span><br><span class="line">gulp.task(watch);</span><br><span class="line"></span><br><span class="line">gulp.task(&apos;default&apos;, gulp.series(&apos;clean&apos;,</span><br><span class="line">    gulp.parallel(&apos;html&apos;, &apos;images&apos;, &apos;css&apos;, &apos;javascript&apos;), &apos;pack&apos;,</span><br><span class="line">    &apos;browser&apos;));</span><br></pre></td></tr></table></figure>
+<p>这些配置足足有140行，每次都要引入的话估计要💥，里面虽然模块众多，但是满足了当代项目构建的所有需求，支持es6，CommonJS、sass写法，同样对压缩js\css\image、热更、重命名等有良好支持，如果你还不满足，也可以加入更多的插件去混淆hash，去替换原路径等等，这就是gulp的美好之处，简单可拆卸。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">// 附带必不可少的package.json</span><br><span class="line"></span><br><span class="line">&quot;devDependencies&quot;: &#123;</span><br><span class="line">        &quot;babel-core&quot;: &quot;^6.26.3&quot;,</span><br><span class="line">        &quot;babel-plugin-transform-runtime&quot;: &quot;^6.23.0&quot;,</span><br><span class="line">        &quot;babel-preset-env&quot;: &quot;^1.7.0&quot;,</span><br><span class="line">        &quot;babel-preset-es2015&quot;: &quot;^6.24.1&quot;,</span><br><span class="line">        &quot;babel-preset-stage-0&quot;: &quot;^6.24.1&quot;,</span><br><span class="line">        &quot;babelify&quot;: &quot;^8.0.0&quot;,</span><br><span class="line">        &quot;browser-sync&quot;: &quot;^2.24.6&quot;,</span><br><span class="line">        &quot;browserify&quot;: &quot;^16.2.2&quot;,</span><br><span class="line">        &quot;del&quot;: &quot;^3.0.0&quot;,</span><br><span class="line">        &quot;gulp&quot;: &quot;^4.0.0&quot;,</span><br><span class="line">        &quot;gulp-autoprefixer&quot;: &quot;^5.0.0&quot;,</span><br><span class="line">        &quot;gulp-babel&quot;: &quot;^7.0.1&quot;,</span><br><span class="line">        &quot;gulp-cache&quot;: &quot;^1.0.2&quot;,</span><br><span class="line">        &quot;gulp-concat&quot;: &quot;^2.6.1&quot;,</span><br><span class="line">        &quot;gulp-csslint&quot;: &quot;^1.0.1&quot;,</span><br><span class="line">        &quot;gulp-imagemin&quot;: &quot;^4.1.0&quot;,</span><br><span class="line">        &quot;gulp-jshint&quot;: &quot;^2.1.0&quot;,</span><br><span class="line">        &quot;gulp-minify-css&quot;: &quot;^1.2.4&quot;,</span><br><span class="line">        &quot;gulp-plumber&quot;: &quot;^1.2.0&quot;,</span><br><span class="line">        &quot;gulp-rename&quot;: &quot;^1.4.0&quot;,</span><br><span class="line">        &quot;gulp-sass&quot;: &quot;^4.0.1&quot;,</span><br><span class="line">        &quot;gulp-uglify&quot;: &quot;^3.0.1&quot;,</span><br><span class="line">        &quot;jshint&quot;: &quot;^2.9.5&quot;,</span><br><span class="line">        &quot;vinyl-source-stream&quot;: &quot;^2.0.0&quot;,</span><br><span class="line">        &quot;webpack&quot;: &quot;^4.16.3&quot;,</span><br><span class="line">        &quot;webpack-stream&quot;: &quot;^5.0.0&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#流程化工具" >
+    <span class="tag-code">流程化工具</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2018/08/14/1534239429/">
+        <span class="nav-arrow">← </span>
+        
+          ThreeJS之载入模型
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2018/08/16/1534390989/">
+        
+          基于vue-cli（3.0）的交互式聊天实现
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="nav">none</ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2018/08/15/1534300497/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "Kelier";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "gulp4.0配置",
+        owner: "Kelier",
+        repo: "Kelier.github.io",
+        oauth: {
+          client_id: "11d7bd9876d36e9148ff",
+          client_secret: "aae671db5a526df7056c6a1a2441f01cdddb0b3d"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/kelier">kelier</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>

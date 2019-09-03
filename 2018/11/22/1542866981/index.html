@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="葬在林中的太阳，迷失在黑夜中央">
+  <meta name="keyword" content="technology frontend design life art poem blog change">
+  <meta name="baidu-site-verification" content="qwKiRPgzT1" />
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      JavaScript是如何工作的系列之在V8引擎中提升你代码质量的5个tips | Bermu
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100658331-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-100658331-1');
+</script>
+  
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Bermu</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>JavaScript是如何工作的系列之在V8引擎中提升你代码质量的5个tips</h2>
+  <p class="post-date">2018-11-22</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>几周前，我们开始了一系列旨在深入探究JavaScript及其实际工作方式的活动:我们认为通过了解JavaScript的构建块以及它们如何一起发挥作用的含义，你将能够编写更好的代码和应用程序。</p>
+<p><br></p>
+<p>第二篇文章将深入谷歌V8 JavaScript引擎的内部。我们还将提供一些关于如何编写更好的JavaScript代码的快速提示。</p>
+<p><br></p>
+<h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>JavaScript引擎是执行js代码的程序或解释器。js引擎可以被实现为标准解释器，或者以某种形式将js编译成字节码的即时编译器。</p>
+<h3 id="Why-was-the-V8-Engine-created"><a href="#Why-was-the-V8-Engine-created" class="headerlink" title="Why was the V8 Engine created?"></a>Why was the V8 Engine created?</h3><p>由谷歌出品的V8引擎是开源且为C++编写，这个引擎在谷歌浏览器中使用。然而，与其他引擎不同，V8也用于流行的Node . js运行时。</p>
+<p><br></p>
+<p>V8最初是为了提高网页浏览器中js执行的性能而设计的。为了获得速度，V8将jst代码编译成更高效的机器代码，而不是使用解释器。</p>
+<p><br></p>
+<p>它通过实现JIT (即时)编译器，将JavaScript代码编译成机器代码，就像许多现代js引擎一样，比如<strong>SpiderMonkey</strong>或Mozilla的<strong>Rhino</strong>。这里的主要区别在于V8不产生字节码或者任何中间代码。</p>
+<h3 id="V8-used-to-have-two-compilers"><a href="#V8-used-to-have-two-compilers" class="headerlink" title="V8 used to have two compilers"></a>V8 used to have two compilers</h3><blockquote>
+<p>full-codegen </p>
+</blockquote>
+<p>一种简单而快速的编译器，产生简单而相对缓慢的机器代码。</p>
+<blockquote>
+<p>Crankshaft</p>
+</blockquote>
+<p>一个更复杂(即时)的优化编译器，它产生高度优化的代码。</p>
+<hr>
+<p>V8引擎还在内部使用几个线程:</p>
+<ul>
+<li>主线程做你所期望的事情:获取你的代码，编译它，然后执行它。</li>
+<li>还有一个单独的线程用于编译，这样主线程可以在前者优化代码时继续执行。</li>
+<li>一个Profiler线程，它将告诉运行时我们在哪些方法上花费了大量时间，以便Crankshaft可以对它们进行优化。</li>
+<li>处理垃圾收集器扫描的几个线程。</li>
+</ul>
+<p>当第一次执行JavaScript代码时，V8利用了全代码生成，它直接将解析的JavaScript翻译成机器代码，而无需任何转换。这允许它非常快地开始执行机器代码。请注意，V8不使用中间字节码表示，这样就不需要解释器。</p>
+<p><br></p>
+<p>当您的代码运行了一段时间后，探查器线程收集了足够的数据来判断应该优化哪种方法。</p>
+<p><br></p>
+<p>接下来，<strong>Crankshaft</strong>优化从另一个线程开始。它将JavaScript抽象语法树转换成一种高级静态单赋值( SSA )表示形式，称为<strong>Hydrogen</strong>，并试图优化氢气图。大多数优化都是在这个级别完成的。</p>
+<h3 id="Inlining"><a href="#Inlining" class="headerlink" title="Inlining"></a>Inlining</h3><p>第一个优化是预先内联尽可能多的代码。内联是用被调用函数的主体替换调用站点(调用函数的代码行)的过程。这个简单的步骤使得以下优化更有意义。</p>
+<p><img src="/images/20181122/1.png" alt=""></p>
+<h3 id="Hidden-class"><a href="#Hidden-class" class="headerlink" title="Hidden class"></a>Hidden class</h3><p>js是一种基于原型的语言，不通过使用克隆过程创建类和对象。另外也是一种动态编程语言，在对象实例化之后可以轻易地被添加或删除属性。</p>
+<p><br></p>
+<p>大多数js解释器使用类似字典的结构(基于散列函数)来存储内存中对象属性值的位置。这种结构使得在js中检索属性值的计算成本比在Java或C #等非动态编程语言中更高。在Java中，所有的对象属性都是由编译前的固定对象布局决定的，不能在运行时动态添加或删除(嗯，C #有动态类型，这是另一个主题)。结果，属性的值(或指向这些属性的指针)可以作为连续的缓冲区存储在内存中，每个缓冲区之间有固定的偏移量。偏移量的长度可以很容易地根据属性类型确定，而在js中，属性类型在运行时可能会改变，这是不可能的。</p>
+<p><br></p>
+<p>由于使用字典查找内存中对象属性的位置效率很低，V8使用了另一种方法:<strong>hidden classes</strong>。隐藏类的工作方式类似于Java等语言中使用的固定对象布局(类)，只是它们是在运行时创建的。现在，让我们看看它们实际上是什么样子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function Point(x, y) &#123;</span><br><span class="line">    this.x = x;</span><br><span class="line">    this.y = y;</span><br><span class="line">&#125;</span><br><span class="line">var p1 = new Point(1, 2);</span><br></pre></td></tr></table></figure>
+<p>一旦“new Point(1, 2);”调用发生，V8将创建一个名为“C0”的隐藏类。</p>
+<p><img src="/images/20181122/2.png" alt=""></p>
+<p>Point尚未定义属性，因此“C0”为空。</p>
+<p><br></p>
+<p>一旦第一条语句“this . x = x”被执行(在“Point”函数内)，V8将创建第二个隐藏类“C1”，该类基于“C0”。“C1”描述内存中可以找到属性x的位置(相对于对象指针)。在这种情况下，“x”存储在偏移量0处，这意味着当将内存中的点对象视为连续缓冲区时，第一个偏移量将对应于属性“x”。V8还将使用“类转换”更新“C0”，该转换声明如果属性“x”被添加到点对象，隐藏类应该从“C0”切换到“C1”。下面点对象的隐藏类现在是“C1”。</p>
+<p><img src="/images/20181122/3.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">每当一个新的属性被添加到一个对象中，旧的隐藏类就会被更新为新的隐藏类的转换路径。隐藏类转换很重要，因为它们允许隐藏类在以相同方式创建的对象之间共享。如果两个对象共享一个隐藏类，并且两个对象都添加了相同的属性，则转换将确保两个对象接收到相同的新隐藏类和所有优化后的代码</span><br></pre></td></tr></table></figure>
+<p>当语句“this . y = y”被执行时，这个过程被重复(同样，在Point函数内部，在“this . x = x”语句之后)。</p>
+<p><br></p>
+<p>创建了一个名为“C2”的新隐藏类，一个类转换被添加到“C1”中，声明如果属性“y”被添加到Point对象(已经包含属性“x”)中，那么隐藏类应该变为“C2”，Point对象的隐藏类将被更新为“C2”。</p>
+<p><img src="/images/20181122/4.png" alt=""></p>
+<p>隐藏类转换取决于属性添加到对象的顺序。请看下面的代码片段:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function Point(x, y) &#123;</span><br><span class="line">    this.x = x;</span><br><span class="line">    this.y = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var p1 = new Point(1, 2);</span><br><span class="line">p1.a = 5;</span><br><span class="line">p1.b = 6;</span><br><span class="line"></span><br><span class="line">var p2 = new Point(3, 4);</span><br><span class="line">p2.b = 7;</span><br><span class="line">p2.a = 8;</span><br></pre></td></tr></table></figure>
+<p>现在，假设P1和p2都使用相同的隐藏类和转换。嗯，不是真的。对于“P1”，首先添加属性“a”，然后添加属性“b”。然而，对于“p2”，首先分配“b”，然后分配“a”。因此，“P1”和“p2”由于不同的转换路径而以不同的隐藏类结束。<strong>在这种情况下，更好的做法是以相同的顺序初始化动态属性，这样隐藏的类可以被重用。</strong></p>
+<h3 id="Inline-caching"><a href="#Inline-caching" class="headerlink" title="Inline caching"></a>Inline caching</h3><p>V8利用了另一种被称为内联缓存的优化动态类型语言的技术。内联缓存依赖于对同一方法的重复调用往往发生在同一类型的对象上的观察。在线缓存的深入解释可以在这里找到。</p>
+<p><br></p>
+<p>我们将讨论内联缓存的一般概念(以防你没有时间深入解释以上内容)。</p>
+<p><br></p>
+<p>那么它是如何工作的呢？V8最近采用了一种调用过程中作为参数传递的对象类型的缓存，并使用此信息对将来作为参数传递的对象类型做出假设。如果V8能够对将要传递给方法的对象类型做出一个很好的假设，它可以绕过找出如何访问对象属性的过程，而是使用从先前查找到对象隐藏类的存储信息。</p>
+<p><br></p>
+<p>那么隐藏类和内联缓存的概念是如何相关的呢？每当对特定对象调用方法时，V8引擎必须对该对象的隐藏类执行查找，以确定访问特定属性的偏移量。在同一方法对同一隐藏类成功调用两次后，V8省略了隐藏类查找，只是将属性的偏移量添加到对象指针本身。对于该方法的所有未来调用，V8引擎假设隐藏类没有改变，并使用以前查找中存储的偏移量直接跳转到特定属性的内存地址。这大大提高了执行速度。</p>
+<p><br></p>
+<p>内联缓存也是相同类型的对象共享隐藏类如此重要的原因。如果您创建了两个相同类型和不同隐藏类的对象(正如我们在前面的示例中所做的)，V8将无法使用内联缓存，因为即使这两个对象是相同类型的，它们对应的隐藏类也会为它们的属性分配不同的偏移量。</p>
+<p><img src="/images/20181122/5.png" alt=""></p>
+<blockquote>
+<p>这两个对象基本相同，但是“a”和“b”属性是以不同的顺序创建的。</p>
+</blockquote>
+<h3 id="Compilation-to-machine-code"><a href="#Compilation-to-machine-code" class="headerlink" title="Compilation to machine code"></a>Compilation to machine code</h3><p>一旦氢图被优化，曲轴会将其降低到一个更低的级别，称为锂。锂的大部分实现都是特定于架构的。寄存器分配就发生于此。</p>
+<p><br></p>
+<p>最后，锂被编译成机器代码。然后发生了另一件事，叫做OSR :栈上替换。在我们开始编译和优化一个明显长时间运行的方法之前，我们可能已经在运行它了。V8不会忘记它刚刚缓慢执行了什么从而重新开始优化版本。反而它会转换我们所有的上下文(堆栈、寄存器)，以便我们可以在执行过程中切换到优化版本。这是一项非常复杂的任务，考虑到在其他优化中，V8最初已经内联了代码。V8并不是唯一能够做到这一点的引擎。</p>
+<p><br></p>
+<p>有一种叫做去优化的安全措施，可以进行相反的转换，并在引擎做出的假设不再成立的情况下返回到非优化代码。</p>
+<h3 id="Garbage-collection"><a href="#Garbage-collection" class="headerlink" title="Garbage collection"></a>Garbage collection</h3><p>对于垃圾回收，V8使用传统的代代标记和清除方法来清除旧一代。标记阶段会停止JavaScript的执行。为了控制GC成本并使执行更加稳定，V8会使用增量标记。它不是遍历整个堆，而是遍历堆的一部分，然后恢复正常执行。下一次GC停止将从上一次堆行走停止的地方继续。这允许在正常执行期间有非常短的暂停时间。如前所述，扫描阶段由单独的线程处理。</p>
+<h3 id="Ignition-and-TurboFan"><a href="#Ignition-and-TurboFan" class="headerlink" title="Ignition and TurboFan"></a>Ignition and TurboFan</h3><p>随着2017年初V8 5.9的发布，引入了一个新的执行管道。这种新管道在现实世界的JavaScript应用中实现了更大的性能提升和显著的内存节省。</p>
+<p><br></p>
+<p>这些改进只是开始。新的点火和涡轮风扇管道为进一步优化铺平了道路，这将在未来几年提高JavaScript性能，缩小V8在Chrome和Node . js中的足迹。</p>
+<p><br></p>
+<p>最后，这里有一些关于如何编写优化的、更好的JavaScript的提示和技巧。你可以很容易地从上面的内容中得到这些，但是，为了方便起见，这里有一个总结:</p>
+<h3 id="How-to-write-optimized-JavaScript"><a href="#How-to-write-optimized-JavaScript" class="headerlink" title="How to write optimized JavaScript"></a>How to write optimized JavaScript</h3><ol>
+<li><strong>Order of object properties:</strong>始终以相同的顺序实例化对象属性，以便共享隐藏的类以及随后优化的代码。</li>
+<li><strong>Dynamic properties:</strong>实例化后向对象添加属性将强制隐藏类更改，并减慢为先前隐藏类优化的任何方法。相反，请在其构造函数中分配对象的所有属性。</li>
+<li><strong>Methods:</strong>重复执行同一方法的代码将比只执行一次许多不同方法的代码运行得更快(由于内联缓存)。</li>
+<li><strong>Arrays:</strong>避免<code>key</code>不是增量数字的稀疏数组。稀疏数组呈现为一个散列表。这种数组中的元素访问起来更昂贵。此外，尽量避免预先分配大型阵列。最好是边走边长。最后，不要删除数组中的元素。这使得密钥变得稀疏。</li>
+<li><strong>Tagged values:</strong>V8表示具有32位的对象和数字。它使用一位来知道它是一个对象(标志= 1 )还是一个名为SMI (小整数)的整数(标志= 0 )，因为它有31位。然后，如果一个数值大于31位，V8会将这个数字装箱，将它变成双倍，并创建一个新的对象来将这个数字放入其中。尽可能使用31位带符号的数字，以避免对JS对象进行昂贵的装箱操作。</li>
+</ol>
+<hr>
+<p>Translate By cococola &amp; google.</p>
+<blockquote>
+<p><a href="https://blog.sessionstack.com/how-javascript-works-inside-the-v8-engine-5-tips-on-how-to-write-optimized-code-ac089e62b12e" target="_blank" rel="noopener">原文出处</a></p>
+</blockquote>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Medium日报" >
+    <span class="tag-code">Medium日报</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2018/11/13/1542094652/">
+        <span class="nav-arrow">← </span>
+        
+          JavaScript如何工作，一份关于引擎，运行时，堆栈的清单
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2018/12/24/1545619266/">
+        
+          100-day-of-5 ML 🐅
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Overview"><span class="toc-nav-text">Overview</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Why-was-the-V8-Engine-created"><span class="toc-nav-text">Why was the V8 Engine created?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#V8-used-to-have-two-compilers"><span class="toc-nav-text">V8 used to have two compilers</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Inlining"><span class="toc-nav-text">Inlining</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Hidden-class"><span class="toc-nav-text">Hidden class</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Inline-caching"><span class="toc-nav-text">Inline caching</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Compilation-to-machine-code"><span class="toc-nav-text">Compilation to machine code</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Garbage-collection"><span class="toc-nav-text">Garbage collection</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Ignition-and-TurboFan"><span class="toc-nav-text">Ignition and TurboFan</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#How-to-write-optimized-JavaScript"><span class="toc-nav-text">How to write optimized JavaScript</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2018/11/22/1542866981/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "Kelier";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "JavaScript是如何工作的系列之在V8引擎中提升你代码质量的5个tips",
+        owner: "Kelier",
+        repo: "Kelier.github.io",
+        oauth: {
+          client_id: "11d7bd9876d36e9148ff",
+          client_secret: "aae671db5a526df7056c6a1a2441f01cdddb0b3d"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/kelier">kelier</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>

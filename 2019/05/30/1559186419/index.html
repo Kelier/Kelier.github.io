@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="葬在林中的太阳，迷失在黑夜中央">
+  <meta name="keyword" content="technology frontend design life art poem blog change">
+  <meta name="baidu-site-verification" content="qwKiRPgzT1" />
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      rollup打包与lerna管理 | Bermu
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100658331-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-100658331-1');
+</script>
+  
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Bermu</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>rollup打包与lerna管理</h2>
+  <p class="post-date">2019-05-30</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>好久没有更新blog了hhh，最近在做一个针对L3门店的视觉组件库，零零散散大致一个月[其实算起来是两周]，第一版的开发及构建已经基本完成了，没有设计的情况下，对于之前项目大致做了一些整理，抽出了最常用的组件，并尽量减少其依赖，针对图表和日历还是觉得应该加入echarts和moment，这样定制起来会方便些。</p>
+<h5 id="项目构成"><a href="#项目构成" class="headerlink" title="项目构成"></a>项目构成</h5><blockquote>
+<p>基于CRA2.0+Storybook+Rollup+Lerna</p>
+</blockquote>
+<p>在开发组件的时候没有遇到太多困难，基本上是设计好功能点，逐一完成，[主要也是因为没有复杂的动画和业务需求👨🏾‍🔬]</p>
+<p><br></p>
+<p>组件库起名为<strong><em>Saga</em></strong>,意为冰岛的冒险故事。</p>
+<p><br></p>
+<p>Version1存在许多不足，没有过多的动画，甚至图标都是在线随便mock的，字体也无考究，一来是为了更贴近业务线，二来是给自己偷懒的理由，Q3也有提高的空间，比如Typescript重写、单测、对props的编排等等，不过现阶段的计划算是圆满达成。</p>
+<hr>
+<blockquote>
+<p>FAQ 记录一些环境配置的问题</p>
+</blockquote>
+<p>项目过程中最大的问题还是各种环境导致的崩溃，这个大家都有所体会</p>
+<h6 id="🐛-1-gt-babel-plugin-Error-Babel-7-0-0-beta-56-has-dropped-support-for-the-‘helpersNamespace’-utility"><a href="#🐛-1-gt-babel-plugin-Error-Babel-7-0-0-beta-56-has-dropped-support-for-the-‘helpersNamespace’-utility" class="headerlink" title="🐛-1 -&gt;  [!] (babel plugin) Error: Babel 7.0.0-beta.56 has dropped support for the ‘helpersNamespace’ utility"></a>🐛-1 -&gt;  [!] (babel plugin) Error: Babel 7.0.0-beta.56 has dropped support for the ‘helpersNamespace’ utility</h6><p>Fix:  请安装 <code>rollup-plugin-babel@3</code>这个包</p>
+<h6 id="🐛-2-gt-babel-plugin-Error-css-语法编译出错"><a href="#🐛-2-gt-babel-plugin-Error-css-语法编译出错" class="headerlink" title="🐛-2  -&gt;  [!] (babel plugin) Error: css 语法编译出错"></a>🐛-2  -&gt;  [!] (babel plugin) Error: css 语法编译出错</h6><p>Fix：请安装<code>rollup-plugin-postcss</code>这个包</p>
+<h6 id="🐛-3-gt-babel-plugin-Error-uglify压缩js时"><a href="#🐛-3-gt-babel-plugin-Error-uglify压缩js时" class="headerlink" title="🐛-3 -&gt; [!] (babel plugin) Error: uglify压缩js时"></a>🐛-3 -&gt; [!] (babel plugin) Error: uglify压缩js时</h6><p>Fix：因为使用的是es模块，请安装<code>rollup-plugin-uglify-es</code>解决</p>
+<h6 id="🐛-4-gt-storybook-build-failed-之-no-babel-loader-package-json"><a href="#🐛-4-gt-storybook-build-failed-之-no-babel-loader-package-json" class="headerlink" title="🐛-4 -&gt; [storybook] build failed 之 no babel-loader package.json"></a>🐛-4 -&gt; [storybook] build failed 之 no babel-loader package.json</h6><p>Fix：安装最新版babel-loader,<code>babel-loader @babel/core @babel/preset-env</code></p>
+<h6 id="🐛-5-gt-storybook-build-failed-之-Plugin-Preset-files-are-not-allowed-to-export-objects-only-functions"><a href="#🐛-5-gt-storybook-build-failed-之-Plugin-Preset-files-are-not-allowed-to-export-objects-only-functions" class="headerlink" title="🐛-5 -&gt; [storybook] build failed 之 Plugin/Preset files are not allowed to export objects, only functions"></a>🐛-5 -&gt; [storybook] build failed 之 Plugin/Preset files are not allowed to export objects, only functions</h6><p>Fix：<code>安装&quot;babel-loader&quot;: &quot;^7.1.5&quot;, 这个真的坑，loader为7的话，其他babel一定要降级为6</code>，同理babel为8，其他插件为7</p>
+<h6 id="🐛-6-gt-rollup-打包时会遇到其他外置依赖项的问题，比如说import-xxx-from-‘xxx’-此时如果提示-Error-quot-name-is-not-exported-by-module-quot"><a href="#🐛-6-gt-rollup-打包时会遇到其他外置依赖项的问题，比如说import-xxx-from-‘xxx’-此时如果提示-Error-quot-name-is-not-exported-by-module-quot" class="headerlink" title="🐛-6 -&gt; [rollup] 打包时会遇到其他外置依赖项的问题，比如说import xxx from ‘xxx’,此时如果提示 Error: &quot;[name] is not exported by [module]&quot;"></a>🐛-6 -&gt; [rollup] 打包时会遇到其他外置依赖项的问题，比如说import xxx from ‘xxx’,此时如果提示 <code>Error: &quot;[name] is not exported by [module]&quot;</code></h6><p>Fix: 首先要安装<code>rollup-plugin-commonjs</code>，之后再引入<code>namedExports</code>的配置，在rollup.config.js中添加，详情见 <code>https://rollupjs.org/guide/en#error-name-is-not-exported-by-module-</code></p>
+<h6 id="🐛-7-gt-rollup-打包时发生-Error-quot-this-is-undefined-quot"><a href="#🐛-7-gt-rollup-打包时发生-Error-quot-this-is-undefined-quot" class="headerlink" title="🐛-7 -&gt; [rollup] 打包时发生 Error: &quot;this is undefined&quot;"></a>🐛-7 -&gt; [rollup] 打包时发生 <code>Error: &quot;this is undefined&quot;</code></h6><p>Fix：查看是否是缺少相关依赖项，在lerna管理包的时候，要注意单包安装依赖，<code>lerna bootstrap</code>可升级相关依赖。</p>
+<h6 id="🐛-8-gt-rollup-打包图片时出现乱码"><a href="#🐛-8-gt-rollup-打包图片时出现乱码" class="headerlink" title="🐛-8 -&gt; [rollup] 打包图片时出现乱码"></a>🐛-8 -&gt; [rollup] 打包图片时出现乱码</h6><p>可以添加<code>rollup-plugin-img</code>进行limit的配置</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#组件库" >
+    <span class="tag-code">组件库</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2019/01/18/1547793288/">
+        <span class="nav-arrow">← </span>
+        
+          再也不想写的测试用例 😤 [Jest+Enzyme+Sinon]
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2019/07/02/1562036676/">
+        
+          100-day-of-8 ML 🐅
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#项目构成"><span class="toc-nav-text">项目构成</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#🐛-1-gt-babel-plugin-Error-Babel-7-0-0-beta-56-has-dropped-support-for-the-‘helpersNamespace’-utility"><span class="toc-nav-text">🐛-1 -&gt;  [!] (babel plugin) Error: Babel 7.0.0-beta.56 has dropped support for the ‘helpersNamespace’ utility</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#🐛-2-gt-babel-plugin-Error-css-语法编译出错"><span class="toc-nav-text">🐛-2  -&gt;  [!] (babel plugin) Error: css 语法编译出错</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#🐛-3-gt-babel-plugin-Error-uglify压缩js时"><span class="toc-nav-text">🐛-3 -&gt; [!] (babel plugin) Error: uglify压缩js时</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#🐛-4-gt-storybook-build-failed-之-no-babel-loader-package-json"><span class="toc-nav-text">🐛-4 -&gt; [storybook] build failed 之 no babel-loader package.json</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#🐛-5-gt-storybook-build-failed-之-Plugin-Preset-files-are-not-allowed-to-export-objects-only-functions"><span class="toc-nav-text">🐛-5 -&gt; [storybook] build failed 之 Plugin/Preset files are not allowed to export objects, only functions</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#🐛-6-gt-rollup-打包时会遇到其他外置依赖项的问题，比如说import-xxx-from-‘xxx’-此时如果提示-Error-quot-name-is-not-exported-by-module-quot"><span class="toc-nav-text">🐛-6 -&gt; [rollup] 打包时会遇到其他外置依赖项的问题，比如说import xxx from ‘xxx’,此时如果提示 Error: &quot;[name] is not exported by [module]&quot;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#🐛-7-gt-rollup-打包时发生-Error-quot-this-is-undefined-quot"><span class="toc-nav-text">🐛-7 -&gt; [rollup] 打包时发生 Error: &quot;this is undefined&quot;</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#🐛-8-gt-rollup-打包图片时出现乱码"><span class="toc-nav-text">🐛-8 -&gt; [rollup] 打包图片时出现乱码</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2019/05/30/1559186419/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "Kelier";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "rollup打包与lerna管理",
+        owner: "Kelier",
+        repo: "Kelier.github.io",
+        oauth: {
+          client_id: "11d7bd9876d36e9148ff",
+          client_secret: "aae671db5a526df7056c6a1a2441f01cdddb0b3d"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/kelier">kelier</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>

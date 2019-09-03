@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="葬在林中的太阳，迷失在黑夜中央">
+  <meta name="keyword" content="technology frontend design life art poem blog change">
+  <meta name="baidu-site-verification" content="qwKiRPgzT1" />
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      一个截图插件工具 🐿 | Bermu
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100658331-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-100658331-1');
+</script>
+  
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Bermu</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>一个截图插件工具 🐿</h2>
+  <p class="post-date">2018-08-16</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>思路来源于<a href="https://github.com/chong0808/shotScreen" target="_blank" rel="noopener">chong0808</a>，我对其进行了一定美化与改造</p>
+<h3 id="测试案例"><a href="#测试案例" class="headerlink" title="测试案例"></a>测试案例</h3><h4 id="下载之后"><a href="#下载之后" class="headerlink" title="下载之后"></a>下载之后</h4><h5 id="npm-i-electron-g"><a href="#npm-i-electron-g" class="headerlink" title="$ npm i electron -g"></a>$ npm i electron -g</h5><h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><h5 id="npm-run-dev"><a href="#npm-run-dev" class="headerlink" title="$ npm run dev"></a>$ npm run dev</h5><h4 id="使用截图"><a href="#使用截图" class="headerlink" title="使用截图"></a>使用截图</h4><p><img src="/images/20180816/slashee.gif" alt=""></p>
+<h3 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">├── screen  // 插件主要文件</span><br><span class="line">│   ├── mainProcess</span><br><span class="line">│   │   └── index.js  // 主进程引入的文件 主要是俩个渲染进程中相互通信的桥梁</span><br><span class="line">│   └── renderProcess // 渲染进程引入的文件</span><br><span class="line">│       ├── asset  // 资源文件</span><br><span class="line">│       ├── index.html // 创建截图渲染进程的文件</span><br><span class="line">│       ├── index.js //  与外界交互的操作</span><br><span class="line">│       └── main-process.js //  创建截图渲染进程中 对图片剪切操作的文件 主要就是canvas的操作</span><br><span class="line">├── test  // 示例文件</span><br><span class="line">│   ├── index.html </span><br><span class="line">│   └── main.js</span><br><span class="line">├── README.md</span><br><span class="line">└── package.json</span><br></pre></td></tr></table></figure>
+<h3 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h3><h4 id="下载文件之后-主进程中引入-文件"><a href="#下载文件之后-主进程中引入-文件" class="headerlink" title="下载文件之后 主进程中引入 文件"></a>下载文件之后 主进程中引入 文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> var screenShot = require(&apos;./screen/mainProcess&apos;);</span><br><span class="line"> //主进程执行完毕之后 然后执行并传入win 实例及配置</span><br><span class="line"> app.on(&apos;ready&apos;, () =&gt; &#123;</span><br><span class="line">    var url = &apos;/index.html&apos;;</span><br><span class="line">    win = createWindow(url);</span><br><span class="line">    win.webContents.openDevTools();</span><br><span class="line">    screenShot(win.webContents,&#123;quit:&apos;ctrl+esc&apos;,shotKey:&apos;ctrl+alt+x&apos;&#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h5 id="quit-退出快捷键-shotKey：截图快捷键"><a href="#quit-退出快捷键-shotKey：截图快捷键" class="headerlink" title="quit:退出快捷键   shotKey：截图快捷键"></a>quit:退出快捷键   shotKey：截图快捷键</h5><h4 id="渲染进程使用方式示例"><a href="#渲染进程使用方式示例" class="headerlink" title="渲染进程使用方式示例"></a>渲染进程使用方式示例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .box &#123;</span><br><span class="line">            width: 500px;</span><br><span class="line">            height: 200px;</span><br><span class="line">            margin: 0 auto;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        .box button &#123;</span><br><span class="line">            width: 100px;</span><br><span class="line">            height: 30px;</span><br><span class="line">            margin: 50px;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;box&quot;&gt;</span><br><span class="line">        &lt;button data-clipScreen=&apos;clipBtn&apos;&gt;截图&lt;/button&gt; //在截图按钮中给与属性 data-clipScreen=&apos;clipBtn&apos;；或者在指定按钮绑定screen()方法</span><br><span class="line">        &lt;button data-cancelclipScreen=&apos;clipBtn&apos;&gt;取消&lt;/button&gt; //在截图按钮中给与属性 data-cancelclipScreen=&apos;clipBtn&apos;；或者在指定按钮绑定screenShot()方法</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var screen = require(&apos;./screen/renderProcess&apos;);  // 引入文件</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="插件主进程文件"><a href="#插件主进程文件" class="headerlink" title="插件主进程文件"></a>插件主进程文件</h4><p>   渲染进程中我们也能使用主进程中的api，在这个文件中，主要的用途就是渲染进程之间的通讯桥梁</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">const &#123; ipcMain, dialog,globalShortcut &#125; = require(&apos;electron&apos;);</span><br><span class="line">module.exports = function(winContent,obj) &#123;</span><br><span class="line">    // 接收截图工具信号</span><br><span class="line">    ipcMain.on(&apos;screenshot-page&apos;, function(sender, message) &#123;</span><br><span class="line">        switch (message.type) &#123;</span><br><span class="line">            case &apos;close&apos;:</span><br><span class="line">                winContent.send(&apos;quit-cut&apos;)</span><br><span class="line">                break;</span><br><span class="line">            default:</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    // 退出快捷键</span><br><span class="line">    var quitShot = (obj&amp;&amp; obj.quit) || &apos;ctrl+esc&apos;;</span><br><span class="line">    var shotKey = (obj&amp;&amp; obj.shotKey) || &apos;ctrl+alt+x&apos;;</span><br><span class="line"></span><br><span class="line">    globalShortcut.register(quitShot, function() &#123;</span><br><span class="line">        winContent.send(&apos;quit-cut&apos;, 1);</span><br><span class="line">    &#125;);</span><br><span class="line">    // 截图快捷键</span><br><span class="line">    globalShortcut.register(&apos;ctrl+alt+d&apos;, function() &#123;</span><br><span class="line">        winContent.send(&apos;global-shortcut-capture&apos;, 1);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="外部渲染进程引入的index-js"><a href="#外部渲染进程引入的index-js" class="headerlink" title="外部渲染进程引入的index.js"></a>外部渲染进程引入的index.js</h4><h5 id="1-截图按钮与取消绑定方法"><a href="#1-截图按钮与取消绑定方法" class="headerlink" title="1. 截图按钮与取消绑定方法"></a>1. 截图按钮与取消绑定方法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// 点击事件绑定</span><br><span class="line">document.body.addEventListener(&apos;click&apos;, function(event) &#123;</span><br><span class="line">    if (event.target.dataset.clipscreen) &#123;</span><br><span class="line">        screenShot ();</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 去除默认选择</span><br><span class="line">document.onselectstart = function() &#123;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br><span class="line">// 点击事件方法</span><br><span class="line">function screenShot()&#123;</span><br><span class="line">    if (!win) &#123;</span><br><span class="line">        capturer().then(function(data) &#123;</span><br><span class="line">            win = createChildWin(&apos;/index.html&apos;, &#123; fullscreen: true, alwaysOnTop: true, skipTaskbar: false, autoHideMenuBar: true, &#125;);</span><br><span class="line">            // win.webContents.openDevTools()</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    return win;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-在点击之后-对屏幕进行截屏"><a href="#2-在点击之后-对屏幕进行截屏" class="headerlink" title="2.在点击之后 对屏幕进行截屏"></a>2.在点击之后 对屏幕进行截屏</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 截取屏幕资源到本地</span><br><span class="line"> */</span><br><span class="line">function capturer() &#123;</span><br><span class="line">    return new Promise(function(resolve, reject) &#123;</span><br><span class="line">        desktopCapturer.getSources(&#123; types: [&apos;window&apos;, &apos;screen&apos;], thumbnailSize: &#123; width: w, height: h &#125; &#125;, (error, sources) =&gt; &#123;</span><br><span class="line">            if (error) console.error(error);</span><br><span class="line">            localStorage[&apos;image&apos;] = sources[0].thumbnail.toDataURL();</span><br><span class="line">            resolve(sources[0].thumbnail.toDataURL())</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="3-创建渲染进程。"><a href="#3-创建渲染进程。" class="headerlink" title="3.创建渲染进程。"></a>3.创建渲染进程。</h5><p>a.创建一个无边框全屏的渲染进程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">var opts = &#123; </span><br><span class="line">    fullscreen: true, </span><br><span class="line">    alwaysOnTop: true, </span><br><span class="line">    skipTaskbar: false, </span><br><span class="line">    autoHideMenuBar: true </span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 创建截屏窗口</span><br><span class="line"> */</span><br><span class="line">function createChildWin(_url, opts) &#123;</span><br><span class="line">    var config = &#123;</span><br><span class="line">        fullscreen: true,</span><br><span class="line">        frame: false</span><br><span class="line">    &#125;</span><br><span class="line">    config = Object.assign(config, opts)</span><br><span class="line">    var _win = new BrowserWindow(config);</span><br><span class="line">    _win.loadURL(url.format(&#123;</span><br><span class="line">        pathname: path.join(__dirname + _url),</span><br><span class="line">        protocol: &apos;file&apos;,</span><br><span class="line">        slashes: true</span><br><span class="line">    &#125;))</span><br><span class="line"></span><br><span class="line">    _win.on(&apos;closed&apos;, () =&gt; &#123;</span><br><span class="line">        _win = null;</span><br><span class="line">    &#125;)</span><br><span class="line">    _win.on(&apos;close&apos;, () =&gt; &#123;</span><br><span class="line">        _win = null;</span><br><span class="line">    &#125;)</span><br><span class="line">    return _win;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>b.将第二步骤中截取的屏幕资源 加载到该渲染进程中的canvas中<br>剩下的都是canvas截图的操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> *</span><br><span class="line"> *原理运用遮罩层，俩个canvas，底下为背景原图产生一个黑色背景画布，上层选区，将选中像素绘制到选区</span><br><span class="line"> *鼠标按下移动鼠标产生一个矩形框，</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line"> // 创建一个类</span><br><span class="line"> class Screen &#123;</span><br><span class="line">    constructor(cas, casMask, src) &#123;</span><br><span class="line">        this.canvas = document.getElementById(cas);</span><br><span class="line">        this.canvasMask = document.getElementById(casMask);</span><br><span class="line"></span><br><span class="line">        this.context = this.canvas.getContext(&quot;2d&quot;);</span><br><span class="line">        this.contextMask = this.canvasMask.getContext(&quot;2d&quot;);</span><br><span class="line"></span><br><span class="line">        this.width = screen.width;</span><br><span class="line">        this.height = screen.height;</span><br><span class="line">        this.canvas.width = this.width;</span><br><span class="line">        this.canvas.height = this.height;</span><br><span class="line">        </span><br><span class="line">        this.image = new Image();</span><br><span class="line">        this.image.src = src;</span><br><span class="line"></span><br><span class="line">        this.cuted = false;</span><br><span class="line">        this.isShowTool = false;</span><br><span class="line"></span><br><span class="line">        this.tool = document.querySelectorAll(&apos;.tool&apos;)[0];</span><br><span class="line">        this.tip = document.querySelectorAll(&apos;.tipNum&apos;)[0];</span><br><span class="line"></span><br><span class="line">        this.leftTopCursor = document.querySelectorAll(&apos;.left_top&apos;)[0];</span><br><span class="line">        this.rightTopCursor = document.querySelectorAll(&apos;.right_top&apos;)[0];</span><br><span class="line">        this.leftBottomCursor = document.querySelectorAll(&apos;.left_bottom&apos;)[0];</span><br><span class="line">        this.rightBottomCursor = document.querySelectorAll(&apos;.right_bottom&apos;)[0];</span><br><span class="line">        // 原本是将屏幕截图image画到this.context画布上的 </span><br><span class="line">        //  不知道为何画出来的是空白的</span><br><span class="line">        // 取而代之的方式是全屏一张图片</span><br><span class="line">        document.getElementsByTagName(&apos;body&apos;)[0].appendChild(this.image);</span><br><span class="line">        // this.drawImg(this.image); </span><br><span class="line">        this.createMask();</span><br><span class="line">        this.getMouse();</span><br><span class="line">        // 绑定this到原型链上</span><br><span class="line">        this.drawImg = this.drawImg.bind(this)</span><br><span class="line">        this.getMouse = this.getMouse.bind(this)</span><br><span class="line">        this.clearCtx = this.clearCtx.bind(this)</span><br><span class="line">        this.createRect = this.createRect.bind(this)</span><br><span class="line">        this.createMask = this.createMask.bind(this)</span><br><span class="line">        this.createReatImage = this.createReatImage.bind(this)</span><br><span class="line">        this.tipShow = this.tipShow.bind(this)</span><br><span class="line">        this.showTool = this.showTool.bind(this)</span><br><span class="line">        this.hideTool = this.hideTool.bind(this)</span><br><span class="line">        this.close = this.close.bind(this)</span><br><span class="line">        this.sendMsg = this.sendMsg.bind(this)</span><br><span class="line">        this.RGBA2ImageData = this.RGBA2ImageData.bind(this)</span><br><span class="line">        this.dragEvent = this.dragEvent.bind(this)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>完整代码地址：<a href="https://github.com/Kelier/slash" target="_blank" rel="noopener">来这里呀</a></p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#electron" >
+    <span class="tag-code">electron</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2018/08/16/1534390989/">
+        <span class="nav-arrow">← </span>
+        
+          基于vue-cli（3.0）的交互式聊天实现
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2018/08/17/1534474445/">
+        
+          github上传过慢
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#测试案例"><span class="toc-nav-text">测试案例</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#下载之后"><span class="toc-nav-text">下载之后</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#npm-i-electron-g"><span class="toc-nav-text">$ npm i electron -g</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#启动"><span class="toc-nav-text">启动</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#npm-run-dev"><span class="toc-nav-text">$ npm run dev</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#使用截图"><span class="toc-nav-text">使用截图</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#文件结构"><span class="toc-nav-text">文件结构</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用方式"><span class="toc-nav-text">使用方式</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#下载文件之后-主进程中引入-文件"><span class="toc-nav-text">下载文件之后 主进程中引入 文件</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#quit-退出快捷键-shotKey：截图快捷键"><span class="toc-nav-text">quit:退出快捷键   shotKey：截图快捷键</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#渲染进程使用方式示例"><span class="toc-nav-text">渲染进程使用方式示例</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#插件主进程文件"><span class="toc-nav-text">插件主进程文件</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#外部渲染进程引入的index-js"><span class="toc-nav-text">外部渲染进程引入的index.js</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#1-截图按钮与取消绑定方法"><span class="toc-nav-text">1. 截图按钮与取消绑定方法</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#2-在点击之后-对屏幕进行截屏"><span class="toc-nav-text">2.在点击之后 对屏幕进行截屏</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#3-创建渲染进程。"><span class="toc-nav-text">3.创建渲染进程。</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2018/08/16/1534419816/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "Kelier";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "一个截图插件工具 🐿",
+        owner: "Kelier",
+        repo: "Kelier.github.io",
+        oauth: {
+          client_id: "11d7bd9876d36e9148ff",
+          client_secret: "aae671db5a526df7056c6a1a2441f01cdddb0b3d"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/kelier">kelier</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>

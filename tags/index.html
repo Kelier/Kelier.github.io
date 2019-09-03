@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="葬在林中的太阳，迷失在黑夜中央">
+  <meta name="keyword" content="technology frontend design life art poem blog change">
+  <meta name="baidu-site-verification" content="qwKiRPgzT1" />
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Tags | Bermu
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100658331-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-100658331-1');
+</script>
+  
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Bermu</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Tags</h2>
+  <p class="post-date">标签检索</p>
+</div>
+<main class="app-body">
+  <div id="tag-cloud">
+    
+      <a class="tag3" data-name="tag-机器学习">机器学习</a>
+    
+      <a class="tag1" data-name="tag-公告">公告</a>
+    
+      <a class="tag3" data-name="tag-chrome插件">chrome插件</a>
+    
+      <a class="tag2" data-name="tag-js基础">js基础</a>
+    
+      <a class="tag1" data-name="tag-css">css</a>
+    
+      <a class="tag0" data-name="tag-设计模式">设计模式</a>
+    
+      <a class="tag2" data-name="tag-js生态">js生态</a>
+    
+      <a class="tag2" data-name="tag-nodejs">nodejs</a>
+    
+      <a class="tag3" data-name="tag-vue">vue</a>
+    
+      <a class="tag3" data-name="tag-流程化工具">流程化工具</a>
+    
+      <a class="tag1" data-name="tag-issues">issues</a>
+    
+      <a class="tag2" data-name="tag-codepen">codepen</a>
+    
+      <a class="tag2" data-name="tag-vim">vim</a>
+    
+      <a class="tag1" data-name="tag-Medium日报">Medium日报</a>
+    
+      <a class="tag2" data-name="tag-linux">linux</a>
+    
+      <a class="tag1" data-name="tag-自动化测试">自动化测试</a>
+    
+      <a class="tag3" data-name="tag-组件库">组件库</a>
+    
+      <a class="tag2" data-name="tag-react">react</a>
+    
+      <a class="tag1" data-name="tag-人生需要一首像样的诗">人生需要一首像样的诗</a>
+    
+      <a class="tag2" data-name="tag-计算机网络">计算机网络</a>
+    
+      <a class="tag1" data-name="tag-build">build</a>
+    
+      <a class="tag2" data-name="tag-electron">electron</a>
+    
+  </div>
+  
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-机器学习">机器学习</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/13/1536832361/">100-day-of-2 ML 🐅</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/12/1536734255/">100-day-of-1 ML 🐅</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/14/1536925694/">100-day-of-3 ML 🐅</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/18/1537264907/">100-day-of-4 ML 🐅</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/12/24/1545619266/">100-day-of-5 ML 🐅</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/12/28/1545984183/">100-day-of-7 ML 🐅</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/12/24/1545619759/">100-day-of-6 ML 🐅</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2019/07/02/1562036676/">100-day-of-8 ML 🐅</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-公告">公告</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/07/18/1531903706/">博客迁移通知</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-chrome插件">chrome插件</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/07/20/1532059140/">chrome插件之拒绝广告💆🏻‍♂️</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/07/23/1532332051/">chrome插件之图片溯源🐿</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-js基础">js基础</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/07/23/1532345846/">JS提升幸福度的技巧[搬运]</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-css">css</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/07/25/1532517974/">基于CSS的filter实现</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/08/03/1533283486/">如何实现一个波浪 🌊</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-设计模式">设计模式</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/08/06/1533542686/">探索JavaScript的设计模式</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-js生态">js生态</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/08/14/1534239429/">ThreeJS之载入模型</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/20/1537430374/">ThreeJs 乱七八糟的用法(一)</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/07/31/1533037192/">two.js初尝</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-nodejs">nodejs</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/07/26/1532604361/">如何做一个类似npm的安装指令？🐯</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-vue">vue</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/08/14/1534236050/">Vue Cli 3 脚手架尝鲜🌾</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/08/16/1534390989/">基于vue-cli（3.0）的交互式聊天实现</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-流程化工具">流程化工具</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/08/15/1534300497/">gulp4.0配置</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-issues">issues</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/04/1536055017/">react中的select无法绑定唯一id的问题</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/08/17/1534474445/">github上传过慢</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-codepen">codepen</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/07/1536309942/">一些有趣的小尝试(一)🤶🏻</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-vim">vim</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/10/02/1538466200/">vim 的基本操作 🤸🏼‍♀️</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-Medium日报">Medium日报</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/11/22/1542866981/">JavaScript是如何工作的系列之在V8引擎中提升你代码质量的5个tips</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/11/13/1542094652/">JavaScript如何工作，一份关于引擎，运行时，堆栈的清单</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-linux">linux</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/10/01/1538363531/">Linux 进程操作 🎃</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-自动化测试">自动化测试</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2019/01/18/1547793288/">再也不想写的测试用例 😤 [Jest+Enzyme+Sinon]</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-组件库">组件库</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2019/05/30/1559186419/">rollup打包与lerna管理</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-react">react</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2019/09/03/1567500158/">REACT Advanced Features Intro 👩🏻‍🔬</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-人生需要一首像样的诗">人生需要一首像样的诗</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536475229/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536479136/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536479042/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536479141/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536479130/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536495267/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536479145/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536495277/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536495272/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536495281/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536495286/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536476053/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536495297/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536495301/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536495292/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536495305/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536495309/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536498172/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536495314/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536498187/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536498178/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536498182/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536498280/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536476431/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536498284/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536476788/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536477430/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536477412/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536477438/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536477424/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/09/09/1536477444/">《二十有余》诗集🌙</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/07/29/1532850317/">摘录集（一）</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-计算机网络">计算机网络</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2017/08/06/1502002119/">计算机网络笔记（一）</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2017/08/11/1502434126/">计算机网络笔记（二）</a>
+          </li>
+        </ul>
+        
+        <ul class="tag-preview">
+          <li>
+            <a href="/2017/08/15/1502779732/">计算机网络笔记（三）</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-build">build</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/08/02/1533180183/">项目打包之rollup</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+    <div class="tag-list">
+      <h3 class="tag-name" id="tag-electron">electron</h3>
+      
+        <ul class="tag-preview">
+          <li>
+            <a href="/2018/08/16/1534419816/">一个截图插件工具 🐿</a>
+          </li>
+        </ul>
+        
+    </div>
+    
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/tags/index.html'
+    $('#article-banner').geopattern(url)
+    $('.header').removeClass('fixed-header')
+
+    var tag = location.hash.replace('#', '')
+    if (tag) {
+      var tagId = "#tag-" + tag;
+      $("html, body").animate({
+        scrollTop: $(tagId).offset().top 
+      }, 400)
+    }
+  })();
+</script>
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/kelier">kelier</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>

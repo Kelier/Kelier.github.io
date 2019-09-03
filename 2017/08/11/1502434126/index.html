@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="葬在林中的太阳，迷失在黑夜中央">
+  <meta name="keyword" content="technology frontend design life art poem blog change">
+  <meta name="baidu-site-verification" content="qwKiRPgzT1" />
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      计算机网络笔记（二） | Bermu
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100658331-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-100658331-1');
+</script>
+  
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Bermu</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>计算机网络笔记（二）</h2>
+  <p class="post-date">2017-08-11</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h4 id="Transport-Layer"><a href="#Transport-Layer" class="headerlink" title="Transport Layer"></a>Transport Layer</h4><h5 id="About-service"><a href="#About-service" class="headerlink" title="About service"></a>About service</h5><p>传输层服务提供一种进程之间的逻辑通信，主要的三个功能有：</p>
+<ol>
+<li>提高服务质量(Improve service quality)</li>
+<li>多路复用与分解(Multiplexing and Demultiplexing)</li>
+<li>分段与重新组装(breaks app messages into segments passes to net layer,reassembles segments into messages passes to app layer)</li>
+</ol>
+<h6 id="Multiplexing-and-Demultiplexing"><a href="#Multiplexing-and-Demultiplexing" class="headerlink" title="Multiplexing and Demultiplexing"></a>Multiplexing and Demultiplexing</h6><p>我们知道，在网络上主机与主机之间的通信，实质上是主机上运行的应用进程之间的通信。例如，当你通过Http上网浏览网页时，实质上是你所访问的主机的服务器进程与你本机的浏览器进程在进行通信。试想一下，当你在上网的同时，还挂着QQ，还使用ftp下载大文件，这时就有三个网络上的进程与你的主机上的三个进程进行通信，那么系统是怎么样正确地把接收到的数据定位到指定的进程中的呢？</p>
+<p>也就是说，系统是怎么把从ftp服务器发送过来的数据交付到ftp客户端，而不把这些数据交付到你的QQ上的呢？反过来考虑，系统又是如何精确地把来自各个应用进程的数据发到网络上指定上的主机（服务器）上的对应进程的呢？这就是多路分解与多路复用的作用了。每个运输层的报文段中设置了几个字段，包括源端口号和目的端口号等。多路分解就是，在接收端，运输层检查这些字段并标识出接收套接字，然后将该报文定向到该套接字。(use header info to deliver received segments to correct socket)多路复用就是从源主机的不同套接字中收集数据块，并为每个数据块封装上首部信息从而生成报文段，然后将报文段传递到网络层中去。(handle data from multiple sockets, add transport header )</p>
+<blockquote>
+<p>无连接的多路复用与分解在运输层，无连接的网络传输是通过UDP来实现的。UDP报文中只有源端口号和目的端口号，一个UDP套接字是由一个含有<code>目的IP地址</code>和<code>目的端口号</code>的二元组来全面标识的。在客户端，源端口号是客户进程套接字的端口号，目的端口号是服务器的端口号。而在服务器端，源端口号是服务器的创建的套接字的端口号，而目的端口号是客户端的套接字的端口号。（了解原理是十分必要的，可以帮助你分析问题）</p>
+</blockquote>
+<blockquote>
+<p>面向连接的多路复用与分解从上面的解说中，我们可以知道，网络上主机间的进程间通信，实质上是通过套接字来实现的。在运输层中面向连接的网络传输多使用TCP，而TCP套接字和UDP套接字之间有一个细微的差别，就是，TCP套接字是由一个四元组（源IP地址、源端口号，目的IP地址，目的端口号）来标识的。这样，当一个TCP报文段从网络到达一台主机时，主机会使用全部4个值来将报文段定向，即多路分解到相应的套接字。了解了以上原理，我们可以具体的去看协议的构成了</p>
+</blockquote>
+<h5 id="UDP-User-Datagram-ProtocolUDP"><a href="#UDP-User-Datagram-ProtocolUDP" class="headerlink" title="UDP: User Datagram ProtocolUDP"></a>UDP: User Datagram ProtocolUDP</h5><p>是一个简单的面向数据报的运输层协议:进程的每个输出操作都正好产生一个UDP数据报,并组装成一份待发送的IP数据报。UDP数据报封装成一份IP数据报的格式如下图<img src="http://upload-images.jianshu.io/upload_images/4784548-1f1f77397596e036.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="">UDP不提供可靠性:它把应用程序传给IP层的数据发送出去,但是并不保证它们能到达目的地、按照顺序到达或是只接到一份数据报。</p>
+<blockquote>
+<p>UDP Segment Structure<img src="http://upload-images.jianshu.io/upload_images/4784548-c79d1deaaf390db3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br><code>Tips:</code> UDP checksum can detect “errors” (e.g., flipped bits) in transmitted segment（可以检测到传输报文时的错误）<br><code>Expands:</code> DNS/SNMP(简单网络管理协议)/多媒体服务都用UDP服务</p>
+</blockquote>
+<h5 id="可靠数据传输RDT（Reliable-Data-Transfer）"><a href="#可靠数据传输RDT（Reliable-Data-Transfer）" class="headerlink" title="可靠数据传输RDT（Reliable Data Transfer）"></a>可靠数据传输RDT（Reliable Data Transfer）</h5><p>这是非常繁琐的一小节，请擦亮眼睛。资料可靠度是网络传输中非常大的问题之一。在TCP抽象服务的模型中(也算是理想状态)，每个应用程序的讯息都透过网络上可靠的通道来传输，然而现实中的困难是 可靠传输协定的下层是不可靠的。也就是说，现实中存在着许多状况，例如资料位元错误、封包遗失等等 可能造成资料的不可靠，必须建立有效的传输协定。</p>
+<h6 id="完全可靠的信道上的可靠数据传输："><a href="#完全可靠的信道上的可靠数据传输：" class="headerlink" title="完全可靠的信道上的可靠数据传输："></a>完全可靠的信道上的可靠数据传输：</h6><p>rdt 1.0现在我们考虑最简单的情况下如何构造一个可靠数据传输协议。<img src="http://upload-images.jianshu.io/upload_images/4784548-a1a234e009abae92.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight plain"><figcaption><span>`Waiting for call from above` 和 `Waiting for call from bellow` 分别表示发送方和接收方的状态，这里只是简单的一个，后面会有更多更复杂的状态图。上图中的箭头指示了协议从一个状态变迁到另一个状态（可以从自己变迁到自己），引起变迁的事件显示在表示变迁的横线上方，事件发生时所采取的动作显示在横线下方。如果一个事件没有动作，或没有事件发生而采取一个动作，将在横线上方或下方使用符号 ∧。有限状态机的初始状态用虚线表示。```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可以看到，rdt 的发送端只通过 `rdt_send(data)` 事件接收来自较高层的数据发送请求。在完成一次数据发送请求中需要两个动作：产生一个包含该数据的分组（经由 `make_pkt(data)` 产生）- 然后将该分组通过 `udt_send(packet)` 发送到信道中- 完成这两个动作后，重新返回原始状态，继续等待来自较高层的数据发送请求。而在接收端，rdt 通过 `rdt_rcv(packet)` 事件从底层信道接收一个分组。在一次数据接收过程中同样需要两个动作：</span><br><span class="line">- 从分组中取出数据（经由 `extract(packet, data)` 产生）- 然后将数据上传给较高层（通过 `deliver_data(data)` 动作）和发送端一样，接收端完成这两个动作后也重新返回原始状态，继续等待从底层信道接收分组。**需要注意的是，在发送端，引起状态变迁的事件是由较高层应用的过程调用产生的；而在接收端，引起状态变迁的事件是由较低层协议的过程调用产生的。**现在我们就构造出了适用于可靠信道的可靠数据传输协议 `rdt 1.0` ，因为信道可靠，接收方也不需要提供任何反馈信息给发送方，不必担心出现差错。而且因为假定了接收方接收数据的速率能够与发送方发送数据的速率一样快，所以接收方也没有必要请求发送方慢一点发送。</span><br><span class="line"></span><br><span class="line">###### 经具有比特差错(Bit Errors)信道的可靠数据传输协议 rdt 2.0</span><br><span class="line">首先需要明确的一点是：如果发送方知道了哪些分组发送出去后接收方并没有收到，那么发送方就需要重传这些分组。基于这样的重传机制的可靠数据传输协议称为自动重传请求(`Automatic Repeat Request, ARQ`)协议 。ARQ 协议使用以下三种方法来处理存在比特差错的情况：`差错检测`。首先我们需要一种机制能够使接收方检测什么时候出现了比特差错。比如 UDP 中使用的因特网检验和字段就是为了这个目的。这些技术要求有额外的比特从发送方发送到接收方，而这些比特将存放在 rdt 2.0 数据分组的分组检验和字段中。`接收方反馈`。发送方要了解接收方是否正确接收分组的唯一途径就是让接收方提供明确的反馈信息，所以接收方需要反馈“肯定确认”（`ACK`）或者“否定确认”（`NAK`）。</span><br><span class="line"></span><br><span class="line">rdt 2.0 协议将从接收方向发送方回送 ACK 或 NAK 分组。这些分组在理论上只需要一个比特长，比如用 0 表示 NAK，用 1 表示 ACK。`重传`。如果接收方收到了受损的分组，发送方必须重传该分组。以上概念我们需要清楚原理即可，不必背诵。了解rdt 2.0加入错误检测，ACK、NAK反馈，重传可能会导致重复数据出现即可下面来看一下 rdt 2.0 的有限状态机描述图，现在该数据传输协议（自动重传请求协议）采用了差错检测、肯定确认与否定确认。![](http://upload-images.jianshu.io/upload_images/4784548-70f2da928051aaa7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)rdt 2.0 的发送端有两个状态。在最左边的初始状态中，发送端协议正等待来自较高层传下来的数据。当触发 rdt_send(data) 事件时：</span><br><span class="line">- 通过 `sndpkt = make_pkt(data, checksum)` 产生一个包含待发送数据且带有校验和的分组- 然后将该分组通过 `udt_send(sndpkt)` 发送到信道中执行完上述的两个动作后，发送端的状态变迁为“等待接收接收端的 ACK 或 NAK 分组”。接下来根据接收端的响应不同会有不同的变迁方案：</span><br><span class="line">- 如果收到了一个 ACK 分组（`rdt_rcv(rcvpkt) &amp;&amp; isACK(rcvpkt)`），那么发送端知道接收端已经成功接收到了刚才发送出去的分组，发送端状态回到初始状态，继续等待下一次由较高层传下来的数据发送请求- 如果收到了一个 NAK 分组（`rdt_rcv(rcvpkt) &amp;&amp; isNAK(rcvpkt)`），那么发送端知道接收端接收到的分组是受损的，所以调用 udt_send(sndpkt) 重新发送该分组，然后状态不变，继续等待接收接收端的 ACK 或 NAK 分组由于 rdt 2.0 的发送端拥有这个特性，所以 rdt 2.0 这样的协议被称为**停等（stop-and-wait）协议**。rdt 2.0 的接收端仍然只有一个状态。状态变迁取决于收到的分组是否受损，有两种方式：</span><br><span class="line">- 如果收到的分组受损，即 rdt_rcv(rcvpkt) &amp;&amp; corrupt(rcvpkt)，则返回 NAK 分组- 如果收到的分组完好，即 rdt_rcv(rcvpkt) &amp;&amp; notcorrupt(rcvpkt)，则返回 ACK 分组处理完后仍然返回自身这个状态，继续等待下一次从底层接收分组并处理。现在我们得到了一个似乎是可以在有比特差错信道上正常工作的可靠数据传输协议了，但仔细想想，我们没有考虑 ACK 或 NAK 分组受损的情况。如果 ACK 或 NAK 分组受损的时候，我们应该怎么做？</span><br><span class="line">&gt;rdt 1.0和rdt 2.0我们详细地讲解了它们的工作原理，如果不想看这部分，可以直接跳过，后面将不再赘述，如有兴趣，请在博文下方戳原文链接深层学习</span><br><span class="line"></span><br><span class="line">###### 经具有比特差错信道的可靠数据传输协议</span><br><span class="line">rdt 2.1 (解决 ACK 或 NAK 分组受损问题)解决这个问题比较简单的一个方法是在数据分组中添加一个新的字段，然后让发送端对其数据分组编号，将发送数据分组的序号放在该字段中。于是，接收端只需要检查序号就可以确定收到的分组是否是一次重新传送的分组。因为 rdt 2.0 是一个简单的停等协议，1 比特序号就足够了。完善了对 ACK 和 NAK 分组受损的情况的处理机制后，我们把完善后的协议称为 rdt 2.1，下面是 rdt 2.1 发送端的有限状态机描述图：![](http://upload-images.jianshu.io/upload_images/4784548-0c6eb266d299f516.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)下面是 rdt 2.1 接收端的有限状态机描述图：![](http://upload-images.jianshu.io/upload_images/4784548-b14f94d30ad3e977.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)现在的状态数是以前的两倍，是因为协议的状态必须反映出目前（由发送端）正发送的分组或（在接收端）希望接受的分组序号是 0 还是 1。&lt;br&gt;</span><br><span class="line"></span><br><span class="line">###### 经具有比特差错信道的可靠数据传输协议 rdt 2.2 (NAK-free)</span><br><span class="line"></span><br><span class="line">其实上面的 rdt 2.1 协议在上述假设的底层信道模型中已经工作的不错了，但是我们还可以再简化一下，实现一个无 NAK 的可靠数据传输协议，我们称它为 rdt 2.2。rdt 2.1 和 rdt 2.2 之间的细微变化在于，接收端此时必须包括由一个 ACK 报文所确认的分组序号（可以通过在接收端有限状态机中，在 make_pkt() 中包括参数 ACK 0 或 ACK 1 来实现），发送端此时必须检查接收到的 ACK 报文中被确认的分组序号（可通过在发送端有限状态机中，在 isACK() 中包括参数 0 或 1 来实现）。下图是 rdt 2.2 协议发送端的有限状态机描述图：![](http://upload-images.jianshu.io/upload_images/4784548-4cdd20796d274e53.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)下图是接收端的有限状态机描述图：![](http://upload-images.jianshu.io/upload_images/4784548-2283a448d08960b6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)考虑在 rdt 2.1 协议中，如果接收端收到了一个受损的分组则会返回 NAK 分组。但是如果不发送 NAK，而是对上次正确接收的分组发送一个 ACK，也能实现与发送 NAK 一样的效果。发送端接收到对同一个分组的两个 ACK（即接收冗余ACK）后，就知道接收端没有正确接收到跟在被确认两次的分组后面的分组。这就是 rdt 2.2 可以取消 NAK 分组的原因。&lt;br&gt;</span><br><span class="line"></span><br><span class="line">###### 经具有比特差错的丢包信道(channels with errors and loss)的可靠数据传输协议 rdt 3.0</span><br><span class="line"></span><br><span class="line">现在我们终于可以回到现实世界了，在现实世界中，除了比特受损外，底层信道还会丢包。这时我们应该如何设计协议以保证可靠数据传输呢？有很多可能的方法用于解决丢包问题，在这里，我们让发送端负责检测和回复丢包工作。果发送端愿意等待足够长的时间以确定该分组缺失已丢失，则它只需要重传该数据分组即可。在 RFC 1323 中，这个时间被假定为 3 分钟。为了实现基于时间的重传机制，需要一个倒计时计时器，在一个给定的时间量过期后，中断发送端。故引入`Timer`![](http://upload-images.jianshu.io/upload_images/4784548-8ce04b980370141d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)下面是传输过程中可能发生的情况![](http://upload-images.jianshu.io/upload_images/4784548-4c4b47412041cbf0.gif?imageMogr2/auto-orient/strip)现在 rdt 3.0 已经是一个功能正确的协议，但因为它的本质仍然是停等协议，Usender=(L/R) / (RTT + L/R)=0.00027，所以效率实在捉鸡。为了有更高的效率，我们来介绍`流水线`</span><br><span class="line"></span><br><span class="line">##### Pipelined protocols[流水线技术]</span><br><span class="line">流水线技术是解决这种特殊性能问题的一个非常简单的方法：不使用停等方式运行，允许发送端发送多个分组而无需等待确认。解决流水线的差错恢复有两种基本方法，分别为 回退 N 步（Go-Back-N, GBN） 和 选择重传（Selective Repeat, SR）。</span><br><span class="line"></span><br><span class="line">###### Go-Back-N</span><br><span class="line">![](http://upload-images.jianshu.io/upload_images/4784548-8245a7bed1486514.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)上图显示了发送方看到的 GBN 协议的序号范围。如果我们将基序号（`base`）定义为最早的未确认分组的序号，将下一个序号（`nextseqnum`）定义为最小的未使用序号（即下一个待发分组的序号），则可将序号范围分割成 4 段。在 `[0, base-1]` 段内的序号对应于已经发送并确认的分组。`[base, nextseqnum-1]` 段对应已经发送但未被确认的分组。`[nextseqnum, base+N-1]` 段内的序号能用于那些要立即发送的分组，如果有数据来自于上层的话。最后，大于或等于 `base+N` 的序号是不能使用的，直到当前流水线中未确认的分组（特别是序号为 base 的分组）已得到确认为止。</span><br><span class="line"></span><br><span class="line">在上图中，我们可以把 [base, base+N-1] 看做一个`长度为 N 的窗口`。随着协议的运行，该窗口在序号空间向前滑动。因此，N 常被称为窗口长度（`window size`），GBN 协议也常被称为`滑动窗口协议（sliding-window protocol）`。至于为什么需要限制 N 的范围，是因为这是**流量控制**的方法之一。可以看到，GBN 协议本身相对于 rdt 3.0 协议有了长足进步，但是仍然有它自己的性能问题，尤其是当窗口长度和带宽时延都很大时，流水线中有很多分组更是如此。任何单个分组的差错就能引起 GBN 协议重传大量分组，事实上是很多分组根本没必要重传，所以，有了一个更加优化的协议，就是下面要说的 **选择重传（SR）** 协议。</span><br><span class="line"></span><br><span class="line">###### Selective RepeatSR</span><br><span class="line">协议在 GBN 协议的基础上进行了改进，它通过让发送方仅重传那些它怀疑在接收方出错（即丢失或受损）的分组而避免了不必要的重传。![](http://upload-images.jianshu.io/upload_images/4784548-7807c658a1cbf4a5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)上图列举了一些可能出现的问题，如果窗口长度与序号空间大小选择不当，将会产生严重的后果。显然，接收方并不知道发送方那边出现了什么问题，对于接收方自己来说，上面两种情况是等价的。没有办法区分是第一个分组的重传还是第 5 个分组的初次传输。所以，窗口长度比序号空间小 1 时协议无法正常工作。但窗口应该有多小呢？答案是：**窗口长度必须小于或等于序号空间大小的一半。**</span><br><span class="line"></span><br><span class="line">##### Transmission Control ProtocolTCP</span><br><span class="line">提供一种面向连接的、可靠的字节流服务。面向连接意味着两个使用TCP的应用(通常是一个客户和一个服务器)在彼此交换数据之前必须先建立一个TCP连接。</span><br><span class="line">&gt;TCP段TCP数据被封装在一个IP数据报中![](http://upload-images.jianshu.io/upload_images/4784548-9c157e37a6fcba75.gif?imageMogr2/auto-orient/strip)</span><br><span class="line"></span><br><span class="line">![](http://upload-images.jianshu.io/upload_images/4784548-335e8bdd7f5bf33c.gif?imageMogr2/auto-orient/strip)Segment</span><br><span class="line">```在TCP首部中有 6个标志比特。它们中的多个可同时被设置为 1。URG 紧急指针(urgent pointer)有效ACK 确认序号有效。PSH 接收方应该尽快将这个报文段交给应用层。RST 重建连接。SYN 同步序号用来发起一个连接。FIN 发端完成发送任务。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可靠传输TCP采用“带重传的肯定确认”技术来实现传输的可靠性。简单的“带重传的肯定确认”是指与发送方通信的接收者，每接收一次数据，就送回一个确认报文，发送者对每个发出去的报文都留一份记录，等到收到确认之后再发出下一报文分组。发送者发出一个报文分组时，启动一个计时器，若计时器计数完毕，确认还未到达，则发送者重新送该报文分组。</p>
+</blockquote>
+<p>简单的确认重传严重浪费带宽，TCP还采用一种称之为“滑动窗口”的流量控制机制来提高网络的吞吐量，窗口的范围决定了发送方发送的但未被接收方确认的数据报的数量。每当接收方正确收到一则报文时，窗口便向前滑动，这种机制使网络中未被确认的数据报数量增加，提高了网络的吞吐量。</p>
+<p>TCP通信建立在面向连接的基础上，实现了一种“虚电路”的概念。双方通信之前，先建立一条连接，然后双方就可以在其上发送数据流。这种数据交换方式能提高效率，但事先建立连接和事后拆除连接需要开销。TCP连接的建立采用三次握手的过程，整个过程由发送方请求连接、接收方再发送一则关于确认的确认三个过程组成<img src="http://upload-images.jianshu.io/upload_images/2893056-e6ef5ab574674ff1.jpg" alt=""></p>
+<blockquote>
+<p>流量控制与拥塞控制(Flow Control and Congestion Control)<br>为了提高报文段的传输速率，TCP采用<code>大小可变的滑动窗口</code>进行流量控制。窗口大小的单位是<code>字节</code>。发送窗口在连接建立时由双方商定，但在通信过程中，接收端可根据自己的接收缓存的大小，随时动态地调整发送端的发送窗口的上限值。这就是接收端窗口<code>rwnd（receiver window）</code>，这个值被放在接收端发送的TCP报文段首部的窗口字段中。同时，发送端根据其对当前网络拥塞程度的估计而确定的窗口值，叫做拥塞窗口<code>cwnd（congestion window）</code>。其大小与网络的带宽和时延密切相关。发送端设置的当前能够发送数据量的大小叫做发送窗口，发送窗口的上限值由下面公式确定： <code>发送窗口的上限值＝Min[cwnd,rwnd]`</code>Tips:` 收端根据其接收缓存确定，发送端确定cwnd比较复杂<img src="http://upload-images.jianshu.io/upload_images/4784548-d6b02e2fcd64de58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</blockquote>
+<h5 id="TCP-Congestion-Control"><a href="#TCP-Congestion-Control" class="headerlink" title="TCP Congestion Control"></a>TCP Congestion Control</h5><h6 id="慢启动（Slow-Start）"><a href="#慢启动（Slow-Start）" class="headerlink" title="慢启动（Slow-Start）"></a>慢启动（Slow-Start）</h6><p><img src="http://upload-images.jianshu.io/upload_images/4784548-f45bade1c80361b0.GIF?imageMogr2/auto-orient/strip" alt="">主机开始发送数据报时，如果立即将大量的数据注入到网络中，可能会出现网络的拥塞。慢启动算法就是在主机刚开始发送数据报的时候先探测一下网络的状况，如果网络状况良好，发送方每发送一次文段都能正确的接受确认报文段。那么就从小到大的增加拥塞窗口的大小，即增加发送窗口的大小。</p>
+<h6 id="拥塞避免（Congestion-Control-Avoidance）"><a href="#拥塞避免（Congestion-Control-Avoidance）" class="headerlink" title="拥塞避免（Congestion Control Avoidance）"></a>拥塞避免（Congestion Control Avoidance）</h6><p>是让cwnd缓慢的增加而不是加倍的增长，每经历过一次往返时间就使cwnd增加1，而不是加倍，这样使cwnd缓慢的增长，比慢启动要慢的多。</p>
+<h6 id="回顾（Retrospective）"><a href="#回顾（Retrospective）" class="headerlink" title="回顾（Retrospective）"></a>回顾（Retrospective）</h6><p><img src="http://upload-images.jianshu.io/upload_images/4784548-4277990dd4248c77.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>AIMD(additive increase multiplicative decrease)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 乘法减小：无论在慢启动阶段还是在拥塞控制阶段，只要网络出现超时，就是将cwnd置为1，ssthresh(慢开始门限)置为cwnd的一半，然后开始执行慢启动算法（cwnd&lt;ssthresh）。</span><br><span class="line"></span><br><span class="line">2. 加法增大：当网络频发出现超时情况时，ssthresh就下降的很快，为了减少注入到网络中的分组数，而加法增大是指执行拥塞避免算法后，是拥塞窗口缓慢的增大，以防止网络过早出现拥塞。</span><br><span class="line"></span><br><span class="line">这两个结合起来就是AIMD算法，是使用最广泛的算法。拥塞避免算法不能够完全的避免网络拥塞，通过控制拥塞窗口的大小只能使网络不易出现拥塞。</span><br></pre></td></tr></table></figure>
+<h5 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h5><p>Q: why is there a UDP?(为什么会有UDP的出现？)</p>
+<p>A: no connection establishment 、simple、small header size、no congestion control</p>
+<p>Q: when should the exponential increase switch to linear? （指数增长何时变成线性？）</p>
+<p>A: when cwnd gets to 1/2 of its value before timeout.</p>
+<p>这一节洋洋洒洒，就这么结束了，你现在的反应也可能是这样的</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-4922b10743f517e1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>不要灰心，还有你好多不知道的，继续修仙吧</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#计算机网络" >
+    <span class="tag-code">计算机网络</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2017/08/06/1502002119/">
+        <span class="nav-arrow">← </span>
+        
+          计算机网络笔记（一）
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2017/08/15/1502779732/">
+        
+          计算机网络笔记（三）
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Transport-Layer"><span class="toc-nav-text">Transport Layer</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#About-service"><span class="toc-nav-text">About service</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#Multiplexing-and-Demultiplexing"><span class="toc-nav-text">Multiplexing and Demultiplexing</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#UDP-User-Datagram-ProtocolUDP"><span class="toc-nav-text">UDP: User Datagram ProtocolUDP</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#可靠数据传输RDT（Reliable-Data-Transfer）"><span class="toc-nav-text">可靠数据传输RDT（Reliable Data Transfer）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#完全可靠的信道上的可靠数据传输："><span class="toc-nav-text">完全可靠的信道上的可靠数据传输：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#TCP-Congestion-Control"><span class="toc-nav-text">TCP Congestion Control</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#慢启动（Slow-Start）"><span class="toc-nav-text">慢启动（Slow-Start）</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#拥塞避免（Congestion-Control-Avoidance）"><span class="toc-nav-text">拥塞避免（Congestion Control Avoidance）</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#回顾（Retrospective）"><span class="toc-nav-text">回顾（Retrospective）</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#Test"><span class="toc-nav-text">Test</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2017/08/11/1502434126/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "Kelier";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "计算机网络笔记（二）",
+        owner: "Kelier",
+        repo: "Kelier.github.io",
+        oauth: {
+          client_id: "11d7bd9876d36e9148ff",
+          client_secret: "aae671db5a526df7056c6a1a2441f01cdddb0b3d"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/kelier">kelier</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>

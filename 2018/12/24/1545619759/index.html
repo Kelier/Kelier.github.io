@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="葬在林中的太阳，迷失在黑夜中央">
+  <meta name="keyword" content="technology frontend design life art poem blog change">
+  <meta name="baidu-site-verification" content="qwKiRPgzT1" />
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      100-day-of-6 ML 🐅 | Bermu
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100658331-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-100658331-1');
+</script>
+  
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Bermu</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>100-day-of-6 ML 🐅</h2>
+  <p class="post-date">2018-12-24</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h3 id="逻辑回归背后的数学"><a href="#逻辑回归背后的数学" class="headerlink" title="逻辑回归背后的数学"></a>逻辑回归背后的数学</h3><p><img src="/images/ml/6.png" alt=""></p>
+<p>逻辑回归最先应用于二十世纪早期的生物科学，后用于许多社科应用，当因变量为分类变量时我们往往使用逻辑回归。</p>
+<p>举个栗子</p>
+<ul>
+<li><p>预测一封邮件是否包含垃圾信息</p>
+</li>
+<li><p>预测肿瘤是否致命</p>
+</li>
+</ul>
+<p>考虑到我们需要区分垃圾邮件的场景，如果我们对这个问题使用线性回归，就需要设立一个基于分类的阈值，如果将恶性分类的值给到0.4，阈值设立为0.5，这些数据点被错误归类，将导致严重的后果。</p>
+<p>从例子当中，可以推断出线性回归并不适用于分类问题，因为线性回归是没有边界的，所以逻辑回归就应运而生，它们的值被严格限定在0-1范围内。</p>
+<h4 id="Simple-Logistic-Regression"><a href="#Simple-Logistic-Regression" class="headerlink" title="Simple Logistic Regression"></a>Simple Logistic Regression</h4><p><strong><em>Model</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Output = 0 or 1</span><br><span class="line">Hypothesis =&gt; Z = WX + B</span><br><span class="line">hΘ(x) = sigmoid(Z)</span><br></pre></td></tr></table></figure>
+<p><strong><em>Sigmoid Function</em></strong></p>
+<p><img src="/images/ml/7.png" alt=""></p>
+<p>如果Z向无限趋近，则Y值逼近于1，反之为0。</p>
+<p><strong><em>Analysis of the hypothesis</em></strong></p>
+<p>假设的输出结果是估计的概率值。当给定输入X，可以用来推断预测值是实际值的置信度。考虑下面的例子，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X = [x0 x1] = [1 IP-Address]</span><br></pre></td></tr></table></figure>
+<p>基于x1值，假设我们得到的估计概率为0.8。这表明一封电子邮件有80 %的几率是垃圾邮件。</p>
+<p>数学公式可以写为：</p>
+<p><img src="/images/ml/8.png" alt=""></p>
+<p>这证明了“逻辑回归”这个名字的合理性。数据被拟合成线性回归模型，然后由预测目标分类相关变量的逻辑函数对其进行处理。</p>
+<p><strong><em>Types of Logistic Regression</em></strong></p>
+<ol>
+<li><p>二元逻辑回归</p>
+<pre><code>Spam or not
+</code></pre></li>
+<li><p>多项式逻辑回归</p>
+<p> 三个甚至多个类型（素食，非素食，肉食）</p>
+</li>
+<li><p>有序逻辑回归</p>
+<p> 三个或三个以上有排序的类别。示例:电影等级从1到5</p>
+</li>
+</ol>
+<p><strong><em>Decision Boundary</em></strong></p>
+<p>为了预测数据的所属分类，需要设立一个阈值，该阈值将得出估计概率的分类类别。</p>
+<p>比方说，如果阈值≥0.5，将区分垃圾邮件与否。</p>
+<p>决策分解可以是线性或者非线性，而多项式阶数可以增加以获得复杂的决策边界。</p>
+<p><strong><em>Cost Function</em></strong></p>
+<p><img src="/images/ml/9.png" alt=""></p>
+<p>为什么损失函数适用于线性回归而不适用逻辑回归呢？</p>
+<p>线性回归使用均方误差作为其成本函数。如果这用于逻辑回归，那么它将是参数(θ)的非凸函数。只有当函数是凸的时，梯度下降才会收敛到全局最小值。</p>
+<p>like this :)</p>
+<p><img src="/images/ml/10.png" alt=""></p>
+<p><strong><em>Cost function explanation</em></strong></p>
+<p><img src="/images/ml/11.jpeg" alt=""></p>
+<hr>
+<p><img src="/images/ml/12.jpeg" alt=""></p>
+<p><strong><em>Simplified cost function</em></strong></p>
+<p><img src="/images/ml/13.png" alt=""></p>
+<p><strong><em>Why this cost function?</em></strong></p>
+<p><img src="/images/ml/14.jpeg" alt=""></p>
+<hr>
+<p><img src="/images/ml/15.jpeg" alt=""></p>
+<p>这个负函数是因为当我们训练时，我们需要通过最小化损失函数来最大化概率。假设样本来自相同的独立分布，只有降低成本才能增加最大可能性。</p>
+<p><strong><em>Deriving the formula for Gradient Descent Algorithm</em></strong></p>
+<p><img src="/images/ml/16.jpeg" alt=""></p>
+<hr>
+<p><img src="/images/ml/17.jpeg" alt=""></p>
+<p><strong><em>Python Implementation</em></strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">weightInitialization</span><span class="params">(n_features)</span>:</span></span><br><span class="line">  w = np.zeros((<span class="number">1</span>, n_features))</span><br><span class="line">  b = <span class="number">0</span></span><br><span class="line">  <span class="keyword">return</span> w, b</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sigmoid_activation</span><span class="params">(result)</span>:</span></span><br><span class="line">  final_result = <span class="number">1</span> / (<span class="number">1</span> + np.exp(-result))</span><br><span class="line">  <span class="keyword">return</span> final_result</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model_optimize</span><span class="params">(w, b, X, Y)</span>:</span></span><br><span class="line">  m = X.shape[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">  <span class="comment"># prediction</span></span><br><span class="line">  final_result = sigmoid_activation(np.dot(w, X.T) + b)</span><br><span class="line">  Y_T = Y.T</span><br><span class="line">  cost = (<span class="number">-1</span> / m) * (np.sum((Y_T * np.log(final_result)) + ((<span class="number">1</span> - Y_T) * np.log(<span class="number">1</span> - final_result))))</span><br><span class="line"></span><br><span class="line">  <span class="comment"># gradient calculation</span></span><br><span class="line">  dw = (<span class="number">1</span> / m) * (np.dot(X.T, (final_result - Y.T).T))</span><br><span class="line">  db = (<span class="number">1</span> / m) * (np.sum(final_result - Y.T))</span><br><span class="line"></span><br><span class="line">  grads = &#123;<span class="string">"dw"</span>: dw, <span class="string">"db"</span>: db&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> grads, cost</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model_predict</span><span class="params">(w, b, X, Y, learning_rate, no_iterations)</span>:</span></span><br><span class="line">  costs = []</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(no_iterations):</span><br><span class="line">    grads, cost = model_optimize(w, b, X, Y)</span><br><span class="line"></span><br><span class="line">    dw = grads[<span class="string">"dw"</span>]</span><br><span class="line">    db = grads[<span class="string">"db"</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># weight update</span></span><br><span class="line">    w = w - (learning_rate * (dw.T))</span><br><span class="line">    b = b - (learning_rate * db)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i % <span class="number">100</span> == <span class="number">0</span>):</span><br><span class="line">      costs.append(cost)</span><br><span class="line">      <span class="comment"># print("Cost after %i iteration is %f" %(i, cost))</span></span><br><span class="line">      <span class="comment">#</span></span><br><span class="line">  <span class="comment"># final parameters</span></span><br><span class="line">  <span class="comment"># </span></span><br><span class="line">  coeoff = &#123;<span class="string">"w"</span>: w, <span class="string">"b"</span>: b&#125;</span><br><span class="line">  gradient = &#123;<span class="string">"dw"</span>: dw, <span class="string">"db"</span>: db&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> coeoff, gradient, costs</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(final_pred, m)</span>:</span></span><br><span class="line">  y_pred = np.zeros((<span class="number">1</span>, m))</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(final_pred.shape[<span class="number">1</span>]):</span><br><span class="line">    <span class="keyword">if</span> final_pred[<span class="number">0</span>][i] &gt; <span class="number">0.5</span>:</span><br><span class="line">      y_pred[<span class="number">0</span>][i] = <span class="number">1</span></span><br><span class="line">  <span class="keyword">return</span> y_pred</span><br></pre></td></tr></table></figure>
+<p>成本与迭代次数的关系:</p>
+<p><img src="/images/ml/18.png" alt=""></p>
+<p>系统的训练和测试精度为100 %</p>
+<p>此实现用于二元逻辑回归。对于两个以上类别的数据，必须使用归一化softmax。</p>
+<p>Full Code  ：<a href="https://github.com/SSaishruthi/LogisticRegression_Vectorized_Implementation/blob/master/Logistic_Regression.ipynb" target="_blank" rel="noopener">https://github.com/SSaishruthi/LogisticRegression_Vectorized_Implementation/blob/master/Logistic_Regression.ipynb</a></p>
+<p>原文：<a href="https://towardsdatascience.com/logistic-regression-detailed-overview-46c4da4303bc" target="_blank" rel="noopener">https://towardsdatascience.com/logistic-regression-detailed-overview-46c4da4303bc</a></p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#机器学习" >
+    <span class="tag-code">机器学习</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2018/12/24/1545619266/">
+        <span class="nav-arrow">← </span>
+        
+          100-day-of-5 ML 🐅
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2018/12/28/1545984183/">
+        
+          100-day-of-7 ML 🐅
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#逻辑回归背后的数学"><span class="toc-nav-text">逻辑回归背后的数学</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Simple-Logistic-Regression"><span class="toc-nav-text">Simple Logistic Regression</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2018/12/24/1545619759/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "Kelier";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "100-day-of-6 ML 🐅",
+        owner: "Kelier",
+        repo: "Kelier.github.io",
+        oauth: {
+          client_id: "11d7bd9876d36e9148ff",
+          client_secret: "aae671db5a526df7056c6a1a2441f01cdddb0b3d"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/kelier">kelier</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>

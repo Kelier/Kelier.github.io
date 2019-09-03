@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="葬在林中的太阳，迷失在黑夜中央">
+  <meta name="keyword" content="technology frontend design life art poem blog change">
+  <meta name="baidu-site-verification" content="qwKiRPgzT1" />
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Bermu
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100658331-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-100658331-1');
+</script>
+  
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Bermu</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link active">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link mobile-active">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <main class="app-body">
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/07/26/1532604361/">如何做一个类似npm的安装指令？🐯</a>
+      </h2>
+      <p class="article-date">July 26, 2018</p>
+      
+        
+  <a href="/tags#nodejs" >
+    <span class="tag-code">nodejs</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          npm shell首先要做一个基本的shell交互命令，基于此进行node项目开发，需要引入一些基础模块。
+1234567var path = require(&apos;path&apos;);  //路径中间件var co = require(&apos;co&apos;); //koa ...
+        
+      </div>
+      <a class="more" href="/2018/07/26/1532604361/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/07/25/1532517974/">基于CSS的filter实现</a>
+      </h2>
+      <p class="article-date">July 25, 2018</p>
+      
+        
+  <a href="/tags#css" >
+    <span class="tag-code">css</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          记得去年在实习中我就已经收集了许多效果，并且粉了一位外国女博主，她有许多针对filter、css的独到见解，并且可以利用特效做一些动画、设计类的运用，为此我想把这些滤镜集成到页面。
+实现思路大体是这样的：
+
+
+12上传 =&gt; 图片预览 =&gt; 选择滤镜 =&gt; 渲染图片=&gt ...
+        
+      </div>
+      <a class="more" href="/2018/07/25/1532517974/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/07/23/1532345846/">JS提升幸福度的技巧[搬运]</a>
+      </h2>
+      <p class="article-date">July 23, 2018</p>
+      
+        
+  <a href="/tags#js基础" >
+    <span class="tag-code">js基础</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          古人有云，眼过千遍，不如手撸一遍，特此证明。
+
+类型强转
+
+Js中可以通过操作符来进行string到数字的转换，以替代valueOf的方法
+1234&apos;412&apos; * 1   //412 Number&apos;ds&apos; * 1 // NaNnull * 1 // 0 ...
+        
+      </div>
+      <a class="more" href="/2018/07/23/1532345846/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/07/23/1532332051/">chrome插件之图片溯源🐿</a>
+      </h2>
+      <p class="article-date">July 23, 2018</p>
+      
+        
+  <a href="/tags#chrome插件" >
+    <span class="tag-code">chrome插件</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          READ ME我花一上午写了个小插件，意在解决找图片地址的问题，因为身为一个前端来讲，总是无可避免的引入一些图片，但每次又得右键右键右键，或者打开控制台，对于本身懒癌的我是致命的缺陷，所以我就稍作了更改，获得了一些便利。[但是还是有很多可优化的地方的，比如说这个插件目前只针对img标签，而且 ...
+        
+      </div>
+      <a class="more" href="/2018/07/23/1532332051/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/07/20/1532059140/">chrome插件之拒绝广告💆🏻‍♂️</a>
+      </h2>
+      <p class="article-date">July 20, 2018</p>
+      
+        
+  <a href="/tags#chrome插件" >
+    <span class="tag-code">chrome插件</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          chrome插件之清除广告相信大家都会在浏览某些网站时遇到一些烦人的广告，他们总是占据着你的大部分视觉空间，而当你想关闭它时，总能点开一些不可描述的链接。
+所以！🤬为了干掉他们，我首先学习的一款插件就是针对它们的，那么我们先来想想看广告一般都是由什么构成的呢
+对，一个个dom元素，我们先去 ...
+        
+      </div>
+      <a class="more" href="/2018/07/20/1532059140/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/07/18/1531903706/">博客迁移通知</a>
+      </h2>
+      <p class="article-date">July 18, 2018</p>
+      
+        
+  <a href="/tags#公告" >
+    <span class="tag-code">公告</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          博客迁移原有的bazinga.cool已到期，由于没有做备份，之前的blog都已丢失，现由2018年7月始，往后于1996.one上更新。
+Thanks!
+
+        
+      </div>
+      <a class="more" href="/2018/07/18/1531903706/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/07/18/hello-world/">Hello World</a>
+      </h2>
+      <p class="article-date">July 18, 2018</p>
+      
+      <div class="article-summary">
+        
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer ...
+        
+      </div>
+      <a class="more" href="/2018/07/18/hello-world/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/08/15/1502779732/">计算机网络笔记（三）</a>
+      </h2>
+      <p class="article-date">August 15, 2017</p>
+      
+        
+  <a href="/tags#计算机网络" >
+    <span class="tag-code">计算机网络</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Network Layer(!)网络层功能网络层里最核心的两个功能是：路由(routing)与转发(forwarding)
+
+路由选择：当分组开始从源主机发往目的主机，网络层必须决定分组该采用的路由或路径。（determine route taken by packets from sour ...
+        
+      </div>
+      <a class="more" href="/2017/08/15/1502779732/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/08/11/1502434126/">计算机网络笔记（二）</a>
+      </h2>
+      <p class="article-date">August 11, 2017</p>
+      
+        
+  <a href="/tags#计算机网络" >
+    <span class="tag-code">计算机网络</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Transport LayerAbout service传输层服务提供一种进程之间的逻辑通信，主要的三个功能有：
+
+提高服务质量(Improve service quality)
+多路复用与分解(Multiplexing and Demultiplexing)
+分段与重新组装(breaks  ...
+        
+      </div>
+      <a class="more" href="/2017/08/11/1502434126/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/08/06/1502002119/">计算机网络笔记（一）</a>
+      </h2>
+      <p class="article-date">August 6, 2017</p>
+      
+        
+  <a href="/tags#计算机网络" >
+    <span class="tag-code">计算机网络</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          一学期的全英教学虽然让我们更接近网络的基础结构，但也为我们的考试复习带来了很大难题，何况宋先生还不给我们提纲。没有什么好的学习方法，只能系统的写下这篇博客，本文内容纯属个人理解，有错误的地方还请与我联系。
+本文极其冗长乏味，请在家长陪同下观看！如有雷同，纯属巧合
+
+笔者认真地翻阅过一遍计算机 ...
+        
+      </div>
+      <a class="more" href="/2017/08/06/1502002119/">Read more</a>
+    </article>
+  
+
+  
+    <div class="guide-pager">
+  
+    <a href="/page/6/"><span class="page-arrow">← </span>Prev</a>
+  
+  
+    <a class="unvisible" href="/">Next <span class="page-arrow">→</span></a>
+  
+</div>
+  
+</main>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/kelier">kelier</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>

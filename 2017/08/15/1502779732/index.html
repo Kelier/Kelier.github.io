@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="葬在林中的太阳，迷失在黑夜中央">
+  <meta name="keyword" content="technology frontend design life art poem blog change">
+  <meta name="baidu-site-verification" content="qwKiRPgzT1" />
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      计算机网络笔记（三） | Bermu
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100658331-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-100658331-1');
+</script>
+  
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Bermu</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>计算机网络笔记（三）</h2>
+  <p class="post-date">2017-08-15</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h4 id="Network-Layer"><a href="#Network-Layer" class="headerlink" title="Network Layer(!)"></a>Network Layer(!)</h4><h5 id="网络层功能"><a href="#网络层功能" class="headerlink" title="网络层功能"></a>网络层功能</h5><p>网络层里最核心的两个功能是：<strong>路由(routing)</strong>与<strong>转发(forwarding)</strong></p>
+<ul>
+<li>路由选择：当分组开始从源主机发往目的主机，网络层必须决定分组该采用的路由或路径。（determine route taken by packets from source to dest. ）</li>
+<li>分组转发：当一个分组到达路由器输入链路时，需要将该分组转发到相应合适的输出链路上。（move packets from router’s input to appropriate router output）</li>
+</ul>
+<h5 id="网络层提供的两种服务"><a href="#网络层提供的两种服务" class="headerlink" title="网络层提供的两种服务"></a>网络层提供的两种服务</h5><p>网络层可以为用户提供两种服务，一个是面向连接的服务，另一种则是无连接的服务。我们在现有的计算机网络体系结构中，网络层只能单独提供其中一个服务，两种服务同时提供是不存在的。网络层提供的是主机到主机的服务，运输层提供的是进程到进程的服务</p>
+<p>在网络层提供面向连接的计算机网络被称为<code>虚电路网络(virtual-circuit network)</code>,而提供无连接的计算机网络则被称为<code>数据报网络(datagram network)</code>。</p>
+<p>我们首先大致了解一下它们的特点：</p>
+<h6 id="虚电路网络-virtual-circuit-network"><a href="#虚电路网络-virtual-circuit-network" class="headerlink" title="虚电路网络(virtual-circuit network)"></a>虚电路网络(virtual-circuit network)</h6><p>虽然因特网是一个数据报网络，但很多其他网络体系结构（ATM、帧中继）却是虚电路网络，因此在网络层使用连接，这些网络层连接被称为虚电路。</p>
+<p>虚电路的组成如下：1）源和目的主机之间的路径（即一系列链路和路由器）2）VC号，沿着该路径的每段链路一个号码 3）沿着该路径的每台路由器中的转发表项。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1234352-1a07bef80c5ae33e.png" alt=""></p>
+<p>如图所示，主机A请求网络与主机B建立一条虚电路，假设虚电路选择路径A-R1-R2-B，并为这三条链路分配VC号12、22、32，这这种情况下，当这条虚电路中的分组离开主机A，VC值12，离开R1，VC值22，离开R2,值32</p>
+<h6 id="数据报网络-datagram-network"><a href="#数据报网络-datagram-network" class="headerlink" title="数据报网络(datagram network)"></a>数据报网络(datagram network)</h6><p>在数据报网络中，每当一个端系统要发送分组，就为该分组加上目的端系统的地址，然后将分组推进网络中，无需建立任何虚电路，路由器不维护任何虚电路的状态信息。</p>
+<p>现在给两者做个对比<br><img src="http://upload-images.jianshu.io/upload_images/4784548-c02f2d23a7aab19a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h5 id="路由器结构-Router-architecture"><a href="#路由器结构-Router-architecture" class="headerlink" title="路由器结构(Router architecture)"></a>路由器结构(Router architecture)</h5><p>前面简单的了解了一下转发，现在详细了解一下。话不多说，先上图！</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-a32a0628ccf3a94c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>此图应该清楚的说明了路由器的内部结构和工作原理，它有四种组件构成:</p>
+<ul>
+<li>Input ports [输入端口]</li>
+<li>Output ports [输出端口]</li>
+<li>Switching fabric [交换结构]</li>
+<li>Routing processor [路由选择处理器]</li>
+</ul>
+<p>输入端口要完成查找功能，在这里通过查询转发表决定路由器的输出端口，然后通过交换结构转发到输出端口。</p>
+<p>在讨论上述转发机制的过程中，我们并没有提及任何特定的计算机网络，在此，我们应该了解一下，我们最常见的网络-因特网。</p>
+<p>先放上一张图审视下网络层内部</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-e9ca20690e5d64e2.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>由此可知因特网的网络层有三个主要组件：</p>
+<ol>
+<li>IP协议</li>
+<li>路由选择部分（计算和维护转发表）</li>
+<li>ICMP（报告数据报中的差错和对默写网络层信息请求进行相应的设施）</li>
+</ol>
+<p>我们一个一个看</p>
+<h6 id="IP部分"><a href="#IP部分" class="headerlink" title="IP部分"></a>IP部分</h6><blockquote>
+<p>IPv4</p>
+</blockquote>
+<p>IPv4，即普遍使用的IP协议，IP协议定义数据传送的基本单元—IP分组及其确切的数据格式。</p>
+<p>IPv4数据报格式：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-2f9b8d20fddf5707.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><code>Tips:</code> 一个IP分组由首部和数据两部分组成。首部的前一部分是固定长度的，共20字节，是所有IP分组必须具有的。在首部固定部分的后面是一些可选字段，其长度是可变的，用来提供错误检测及安全等机制。</p>
+<blockquote>
+<p>IP数据包分片(fragmentation)</p>
+</blockquote>
+<p>一个链路层数据报能承载的最大数据量称为最大传送单元（MTU）。因为IP数据报被封装在链路层数据报中，故链路层的MTU严格地限制着IP数据报的长度，而且在IP数据报的源于目的地路径上的各段链路可能使用不同的链路层协议，有不同的MTU。当IP数据报的总长度大于链路MTU，就需要将IP数据报中的数据分装在两个或更多个较小的IP数据报中，这些较小的数据报叫做片。</p>
+<p><code>Expand:</code> MTU:maximum transmission unit</p>
+<p>下面是分片的举例：</p>
+<table>
+<thead>
+<tr>
+<th>片</th>
+<th>字节</th>
+<th>ID</th>
+<th>偏移</th>
+<th>标志</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一片</td>
+<td>1480字节</td>
+<td>777</td>
+<td>0（表示插入的数据开始于字节0）</td>
+<td>Flag=1(表示后面还有）</td>
+</tr>
+<tr>
+<td>第二片</td>
+<td>1480字节</td>
+<td>777</td>
+<td>185（表示插入的数据开始于字节1480.185*8 = 1480</td>
+<td>Flag=1（表示后面还有）</td>
+</tr>
+<tr>
+<td>第三片</td>
+<td>1020字节</td>
+<td>777</td>
+<td>370（表示插入的数据开始于字节370*8=2960）</td>
+<td>Flag=0（表示这是最后一片）</td>
+</tr>
+</tbody>
+</table>
+<p>注意：为坚持网络内核保持简单的原则，IPv4的设计者决定数据报的重新组装工作放到端系统中，而不是在网络路由器中。</p>
+<blockquote>
+<p>IPv4地址</p>
+</blockquote>
+<p>连接在Internet中的每一台主机（或路由器）都分配一个<code>32比特</code>的全球唯一的标识符，即IP地址。传统的IP地址是分类的地址，分为<code>A、B、C、D、E</code>五类。都是由网络号和主机号组成。<br><br>网络号A：1-126 B：128-191 C：192-223 D：224-239 E：240-255</p>
+<p><strong>DHCP(the Dynamic Host Configuration Protocol)</strong></p>
+<p>我们先来看一下什么是DHCP，DHCP(<code>Dynamic Host Configuration Protocol</code>)，动态主机配置协议)它可以为客户机自动分配IP地址、子网掩码以及缺省网关、DNS服务器的IP地址等TCP/IP参数，简单来说，就是在DHCP服务器上有一个数据库，存放着IP地址、网关、DNS等参数。当客户端请求使用时，服务器则负责将相应的参数分配给客户端。以避免客户端手动指定IP地址。</p>
+<p>来看下DHCP的工作过程，我们可以叫它<code>dora</code>(不是动画片里那个=-=):</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-71d969fdd3b83852.gif?imageMogr2/auto-orient/strip" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.DHCP DISCOVER: 寻找服务器</span><br><span class="line">　　当DHCP客户端第一次登录网络的时候或者是开机时，此计算机发现本机上没有任何IP地址设定，就会向网络广播去寻找DHCP服务器。该数据包的来源地址会为0.0.0.0，而目的地址则为255.255.255.255。</span><br><span class="line">　　2. DHCP OFFER分配IP地址</span><br><span class="line">　　当无线设备监听到客户端发出的寻找服务器的数据包后，它会从那些还没有分配出的IP地址里，选择最前面的的空闲IP，给客户端一个分配IP地址，但这里仅仅是分配，客户端还没有真正应用上。</span><br><span class="line">　　3. DHCP REQUEST 请求使用</span><br><span class="line">　　客户端收到无线设备发送回来的分配IP地址数据包，客户端会向网络发送一个ARP数据包，确认网络中没有其他机器使用该IP地址，如果已经有，则重复发送步骤1中的动作;如果没有，则接受该IP地址，并发送一个DHCP request数据包给无线路由器，也就是DHCP服务器，请求使用此地址。</span><br><span class="line">　　4. DHCP ACK IP地址分配确认</span><br><span class="line">　　当无线设备接收到客户端的DHCP request数据包之后，会向客户端发出一个DHCP ACK回应，以确认IP地址的正式生效，也就结束了一个完整的DHCP工作过程。</span><br></pre></td></tr></table></figure>
+<p><code>Tips:</code> DHCP是基于UDP的应用层协议,是即插即用的(plug-and-play)</p>
+<blockquote>
+<p>NAT(network address translation)</p>
+</blockquote>
+<p>网络地址转换（NAT）是通过将专用网络地址转换为公用地址，从而对外隐藏了内部管理的IP地址。它使得整个专用网只需要一个全球IP地址就可以与因特网连通，由于专用网本地IP地址是可重用的，所以NAT大大<code>节省了IP地址的消耗</code>。同时，它隐藏了内部网络结构，从而<code>降低了内部网络收到攻击的风险</code>。</p>
+<blockquote>
+<p>ICMP(internet control message protocol)</p>
+</blockquote>
+<p>为了提高IP数据报交付成功的机会，在网络层使用了<code>网络控制报文协议ICMP</code>来允许主机或路由器<code>报告差错和异常情况</code>。ICMP报文作为IP层数据报的数据，加上数据报的首部，组成IP数据报发送出去。ICMP协议是<code>IP层协议</code>。</p>
+<blockquote>
+<p>IPv6</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-19ce608d8470a20b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>二话不说先扔图。要解决IP地址耗尽的问题的措施有以下三种：1.采用无类别CIDR，使IP地址的分配更加合理；2.采用网络地址转换NAT方法以节省全球IP地址；3.采用具有更大地址空间的新版本IP协议IPv6。前两者只是延长了IPv4地址分配结束的时间，只有第三种方法从根本上解决了IP地址的耗尽问题。</p>
+<p>所以说如果考试问你这个你就会了是吧</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">IPv6的主要特点如下：</span><br><span class="line">1）更大的地址空间。IPv6将地址从IPv4的32位增大到了128位</span><br><span class="line">2）扩展的地址层次结构</span><br><span class="line">3）灵活的首部格式</span><br><span class="line">4）改进的选项</span><br><span class="line">5）允许协议继续扩充</span><br><span class="line">6）支持即插即用（即自动配置）</span><br><span class="line">7）支持资源的预分配</span><br><span class="line"></span><br><span class="line">IPv6的最大特征还是在于它的保密性</span><br></pre></td></tr></table></figure>
+<h5 id="Routing-Algorithms"><a href="#Routing-Algorithms" class="headerlink" title="Routing Algorithms"></a>Routing Algorithms</h5><p>看到这里，大家可能又会倒吸一口凉气，毕竟还是有很多人和我一样看见算法就头疼，笔者也是很担心整理不好。前辈们你们是没事可做吗？为什么写这么多概念？？？</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-1c2432164c745030.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<hr>
+<p>我们举步维艰，艰难地啃着概念…</p>
+<p>那么问题来了，什么是路由算法？</p>
+<p>你可能给出这样的回答:<code>是在给定一组路由器及连接路由器链路的情况下,找出一条由源节点到目标节点的最佳路径。</code></p>
+<p>我肯定会说你好棒棒</p>
+<p>其实呢，路由算法分为两大类:非自适应路由算法和自适应路由算法。非自适应路由算法典型代表就是静态路由,而动态路由中所使用到的算法都属于自适应路由算法。而路由表是存储在路由器或者联网计算机中的电子表格或类似的数据库.路由表存储着指向特定那个网络地址的路径。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-791599bff5a0ab4d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">几种主要的路由算法:</span><br><span class="line"></span><br><span class="line">　　　　静态路由算法:</span><br><span class="line"></span><br><span class="line">　　　　　　1.最短路径路由算法(Shortest Path Routing).</span><br><span class="line"></span><br><span class="line">　　　　　　2.扩散算法</span><br><span class="line"></span><br><span class="line">　　　　动态路由算法:</span><br><span class="line"></span><br><span class="line">　　　　　　1.距离矢量路由算法(Distance-Vector)</span><br><span class="line"></span><br><span class="line">　　　　　　2.链路状态路由算法(Link-State)</span><br></pre></td></tr></table></figure>
+<p><code>Tips:</code><br><br> 距离矢量路由算法（Distance Vector Routing，DV）是ARPANET网络上最早使用的路由算法，也称Bellman-Ford路由算法和Ford-Fulkerson算法，主要在<code>RIP（Route Information Protocol）</code>协议中使用。我们可以记住一个常用的公式：<strong>d<sub>x</sub>(y)=min{c(x,v)+d<sub>v</sub>y}</strong><br><br> 链路状态路由协议是目前使用最广的一类域内路由协议。它采用一种“拼图”的设计策略，即每个路由器将它到其周围邻居的链路状态向全网的其他路由器进行广播。其中我们会了解到迪杰斯特拉(Dijkstra)算法,它便是其中一种用法，其核心基于最短路径。</p>
+<p>我们这里不深入探讨算法的内涵，考试没那么变态，我们理解一些基本点就足够</p>
+<p>这两种算法各有特点，分述如下：</p>
+<ol>
+<li>报文复杂性(message complexity)。LS算法要求每个节点知道网络中每条链路的费用，DV算法要求在每次迭代时，在两个直接相连的邻居之间交换报文。</li>
+<li>收敛速度(speed of convergence)。优劣显而易见</li>
+<li>健壮性(robustness)。如果一台路由器发生故障，行为错乱或受到破坏时情况会怎样呢？对于LS算法，路由器能够像其连接的的一条链路广播不正确费用。一个节点也可损坏或丢弃他收到的任何LS广播分组作为LS广播的一部分。但是一个LS节点仅计算自己的转发表：其他节点为自己做类似的计算。这就意味这在LS算法下，路由计算是有些孤立的，提供了一定程度的健壮性。在DV算法下，一个节点可向任意或所有的目的节点通告其不正确的最低费用路径。DV算法中一个不正确的节点计算值会扩散到整个网络。</li>
+</ol>
+<h5 id="Hierarchical-routing"><a href="#Hierarchical-routing" class="headerlink" title="Hierarchical routing"></a>Hierarchical routing</h5><p>为了解决路由表的规模问题（scale）和实现办公自动化（Administrative autonomy），我们来说明下分层路由的出现。</p>
+<p>自治系统内部的路由选择称域内路由选择，自治系统之间的路由选择称域间路由选择。也就是我们常说的 <code>intra-AS</code> 和 <code>inter-AS</code></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-1b670c8a31e9c9e8.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h5 id="因特网的路由协议"><a href="#因特网的路由协议" class="headerlink" title="因特网的路由协议"></a>因特网的路由协议</h5><h6 id="Intra-AS-Routing-also-known-as-interior-gateway-protocols-IGP"><a href="#Intra-AS-Routing-also-known-as-interior-gateway-protocols-IGP" class="headerlink" title="Intra-AS Routing(also known as interior gateway protocols [IGP])"></a>Intra-AS Routing(also known as interior gateway protocols [IGP])</h6><p>我们来介绍常用的三种路由协议</p>
+<blockquote>
+<p>RIP(Routing Information Protocol)</p>
+</blockquote>
+<p>路由信息协议（RIP）是内部网关协议中最先得到广泛应用的协议，是一种分布式的基于距离向量的路由选择协议，其最大优点就是简单。缺点是RIP限制了网络的规模，它能使用的最大距离为15（16为不可达），除此之外开销很大。</p>
+<blockquote>
+<p>OSPF (Open Shortest Path First)</p>
+</blockquote>
+<p>开放最短路径优先协议是使用分布式链路状态路由算法的典型代表。OSPF收敛速度快，适应各种规模，将协议自身的开销控制到最小，同时也具有良好的安全性。</p>
+<p><code>Tips:</code> OSPF是网络层协议，它不使用UDP或TCP而是直接IP数据报传送。</p>
+<h6 id="Intra-AS-Routing：BGP"><a href="#Intra-AS-Routing：BGP" class="headerlink" title="Intra-AS Routing：BGP"></a>Intra-AS Routing：BGP</h6><p>BGP (Border Gateway Protocol): 边界网关协议是不同自治系统的路由器之间交换路由信息的协议。边界网关协议常常应用于互联网的网关之间。路由表包含已知路由器的列表、路由器能够达到的地址以及到达每个路由器的路径的跳数。</p>
+<p>边界网关协议BGP只能是力求寻找一条能够到达目的网络且比较好的路由，而并非要寻找一条最佳路由。BGP采用的是路径向量路由选择协议，它与距离向量协议和链路状态协议有很大区别。BGP协议是应用层协议，基于TCP的。</p>
+<p>而BGP又分为了两种，我们迅速地看一下</p>
+<p>eBGP —— (external Border Gateway Protocol) 外部边界网关协议，用于在不同的自治系统间交换路由信息。</p>
+<p>iBGP —— (internal Border Gateway Protocol)的主要作用是向你的内部路由器提供更多信息。iBGP路由器必须以全网状结构相连，以防止路由环回。如果使用了路由反射器或路由联盟，那么iBGP网状结构可能遭遇收敛问题，而导致路由黑洞。</p>
+<h6 id="Broadcast-and-Multicast-Routing"><a href="#Broadcast-and-Multicast-Routing" class="headerlink" title="Broadcast and Multicast Routing"></a>Broadcast and Multicast Routing</h6><p>广播路由选择需要提供一种从源结点到网络中的所有其他结点交付分组的服务。而多播是一对多的关系，是相对于子网的所有节点而言。</p>
+<p>一笔带过吧，说多了心痛。</p>
+<h5 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h5><p>Q: 转发表是如何得到的（what is the relationship between routing and forwarding）?</p>
+<p>A: 路由选择算法决定了插入路由器的转发表的值，路由器接收路由选择协议报文，该信息被用于配置其转发表。(routing algorithm determines end-end-path through network,forwarding table determines local forwarding at this router)</p>
+<p>Q: What are the three phases of virtual circuits?</p>
+<p>A:  虚电路建立（VC setup）、 数据传送（Data transfer）、虚电路拆除（VC teardown）</p>
+<p>Q: how does network get subnet part of IP addr?</p>
+<p>A: gets allocated portion of its provider ISP’s address space(获取其提供程序ISP的地址空间的分配部分。)</p>
+<p>Q: How do you migrate from IPV4 to IPV6?</p>
+<p>A: 1.双栈（dual-stack），2.建隧道(tunnel)</p>
+<hr>
+<h4 id="Link-Layer-and-LAN"><a href="#Link-Layer-and-LAN" class="headerlink" title="Link Layer and LAN"></a>Link Layer and LAN</h4><p>首先，能看到现在，我对你的生命力感到由衷的钦佩。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-b17c33fc2a72903d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>但是革命仍未结束，同志仍须努力</p>
+<h5 id="About-Service"><a href="#About-Service" class="headerlink" title="About Service"></a>About Service</h5><p>其设计的初衷就是顺利为网络层提供数据服务，不考虑可靠性，可靠性的部分由传输层的TCP协议实现</p>
+<p>为了使数据链路层能更好地适应多种局域网标准，802 委员会就将局域网的数据链路层拆成两个子层：</p>
+<ul>
+<li>逻辑链路控制 <code>LLC (Logical Link Control)</code>子层</li>
+<li>媒体接入控制 <code>MAC (Medium Access Control)</code>子层。</li>
+</ul>
+<p>数据链路层使用的信道主要有以下两种类型：</p>
+<ol>
+<li>点对点信道</li>
+<li>广播信道（多用于LAN）</li>
+</ol>
+<p>点对点信道的数据链路层的协议数据单元为帧(<code>frame</code>)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">点对点信道的数据链路层在进行通信时的主要步骤：</span><br><span class="line">（1）结点A的数据链路层把网络层交下来的IP数据报添加首部和尾部封装成帧。</span><br><span class="line">（2）结点A把封装好的帧发送给结点B的数据链路层。</span><br><span class="line">（3）若结点B的数据链路层收到的帧无差错，则从收到的帧中提取出IP数据报上交给上面的网络层；否则丢弃这个帧。</span><br></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-5f2d73cf7bbfefe5.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<center><font color="gray">网络适配器之间的通信</font></center>
+
+<p>帧同步虽然可以区分每个数据帧的起始和结束，但是还没有解决数据正确传输的两方面问题：一、如果有帧出现了错误？二、如果有帧丢失了呢？这都是数据链路层确保向网络层提供可靠数据传输服务时需要解决的问题，也就是数据链路层的差错控制功能。</p>
+<h5 id="Error-Detection-and-Correction-Techiniques-错误检测与纠正"><a href="#Error-Detection-and-Correction-Techiniques-错误检测与纠正" class="headerlink" title="Error-Detection and -Correction Techiniques(错误检测与纠正)"></a>Error-Detection and -Correction Techiniques(错误检测与纠正)</h5><h6 id="错误检测"><a href="#错误检测" class="headerlink" title="错误检测"></a>错误检测</h6><p>在数据链路层检测数据传输错误的方法一般是通过对差错编码进行校验来实现，常见的有<code>奇偶校验码</code>和<code>循环冗余校验（CRC）</code></p>
+<blockquote>
+<p>Parity Checks</p>
+</blockquote>
+<p>没啥好说的，最后一位设置校验位即可，我相信你懂</p>
+<blockquote>
+<p>Cyclic Redundancy Checks</p>
+</blockquote>
+<p>我们主要说说这个，循环冗余校验是一种根据传输或保存的数据而产生固定位数校验码的方法，主要用来检测或校验数据传输或者保存后可能出现的错误。生成的数字在传输或者储存之前计算出来并且附加到数据后面，然后接收端进行检验确定数据是否发生变化。（好像是考点，你最好看看）</p>
+<p>CRC码可能看起来是这个样子</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-178b4b850452182a.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们来举一个CRC计算的例子方便入门</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-307daa8507cd547a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>【说明】“模2除法”与“算术除法”类似，但它既不向上位借位，也不比较除数和被除数的相同位数值的大小，只要以相同位数进行相除即可。</p>
+<p>缓一口气，我们再看下一个对链路层很重要的问题：如何协调多个发送和接收节点对一个共享广播信道的访问？这就是多路访问问题了。</p>
+<h5 id="Multiple-access-protocols"><a href="#Multiple-access-protocols" class="headerlink" title="Multiple access protocols"></a>Multiple access protocols</h5><p>多路访问协议大致分为3种：信道划分协议（<code>channel partitioning</code>）、随机接入协议（<code>random access</code>）和轮流协议（<code>taking turns</code>）。</p>
+<h6 id="信道划分"><a href="#信道划分" class="headerlink" title="信道划分"></a>信道划分</h6><blockquote>
+<p>TDMA: time division multiple access (时分多路复用)</p>
+</blockquote>
+<p>TDM将时间划分为时间帧，并进一步划分每个时间帧为N个时隙。TDM消除了碰撞，而且非常公平（R/Nbps的速率）。但是它有两个缺陷：节点被限制于R/Nbps的平均速率。节点必须等待它在传输序列中的轮次。</p>
+<blockquote>
+<p>FDMA: frequency division multiple access (频分多路复用)</p>
+</blockquote>
+<p>FDM将Rbps信道划分为不同的频段（每个频段具有R/N带宽），并把每个频率分配给N个节点中的一个。不过它跟TDM的优缺点一样。</p>
+<blockquote>
+<p>CDMA: code division multiple access (码分多路复用)</p>
+</blockquote>
+<p>我们后续在无线网中说到</p>
+<h6 id="随机接入"><a href="#随机接入" class="headerlink" title="随机接入"></a>随机接入</h6><p>在随机接入协议中，一个传输节点总是以信道的全部速率（即Rbps）进行发送。当有碰撞时，涉及碰撞的每个节点反复地重发它的帧，直到该帧无碰撞地通过为止。但是当一个节点经受一次碰撞时，它不必立刻重发该帧。相反，它在重发该帧之前等待一个随机时延。这里介绍最常用随机接入协议，即<code>ALOHA协议</code>和<code>载波侦听多路访问协议（CSMA）</code>。</p>
+<blockquote>
+<p>ALOHA</p>
+</blockquote>
+<p>ALOHA又分为 <code>Pure ALOHA</code> 和 <code>Slotted ALOHA</code></p>
+<ul>
+<li>纯ALOHA：简单，当传输点有数据需要传送的时候，它会向立即向通讯频道传送。可能会引发不少冲突(e<sub>f</sub>=0.18，糟糕的传输率)</li>
+<li>时隙ALOHA：这是对纯ALOHA协议的一个改进。改进之处在于，它把频道在时间上分段，每个传输点只能在一个分段的开始处进行传送。每次传送的数据必须少于或者等于一个频道的一个时间分段。这样很大的减少了传输频道的冲突。效率是<code>1/e=0.37</code></li>
+</ul>
+<blockquote>
+<p>CSMA (carrier sense multiple access)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">关于CSMA，如果比喻成与人谈话，有礼貌的人谈话有两个重要规则：</span><br><span class="line"></span><br><span class="line">第一：说话之前先听。</span><br><span class="line"></span><br><span class="line">第二：如果与他人同时开始说话，停止说话。</span><br></pre></td></tr></table></figure>
+<p>说话前先听，也就是载波侦听（carrier sensing），即一个节点在传输前先听信道。如果来自另一个节点的帧正向信道上发送，节点则等待一段随机时间后再侦听信道。如果侦听到时空闲的，则开始传输，否则再等待另一段随机时间，继续重复整个过程。</p>
+<p>如果同时说话，那么都停止说话，在网络领域中被称为碰撞检测（collision detection），即一个传输节点在传输时一直在侦听信道，如果它检测到另一节点正在传输干扰帧，它就停止传输，用某个协议来确定应该在什么时候再尝试下一次传输。</p>
+<p>这两个规则包含在载波侦听多路访问（CSMA）和具有碰撞检测的CSMA（CSMA with Collision Detection， CSMA/CD）协议族中。</p>
+<p><code>Expand:</code> CSMA/CD efficiency=1/(1+5t<sub>prop</sub>/t<sub>trans</sub>)</p>
+<h6 id="轮流协议"><a href="#轮流协议" class="headerlink" title="轮流协议"></a>轮流协议</h6><p>这里讨论比较重要的两种协议。第一种是轮询协议（<code>polling protocol</code>），要求这些节点之一要被指定为主节点。主节点以循环的方式轮询每个节点。轮询协议消除了困扰随机接入协议的碰撞和空时隙，使得轮询取得高得多的效率。但也有缺点，第一个缺点是该协议引入<code>轮询时延</code>，即通知一个节点它可以传输所需的时间。第二个缺点就是主节点有故障，整个信道将变得不可操作。第二种轮流协议是令牌传递协议(<code>token-passing protocol</code>)，在这个协议中没有主节点。一个小的称为令牌的特殊目的帧在节点之间以某种固定的次序进行交换。</p>
+<blockquote>
+<p>polling</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-1b89fb7f67881979.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>token-passing</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-bcf757c3ad2c6762.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h5 id="link-Layer-Addressing"><a href="#link-Layer-Addressing" class="headerlink" title="link-Layer Addressing"></a>link-Layer Addressing</h5><h6 id="MAC-address"><a href="#MAC-address" class="headerlink" title="MAC address"></a>MAC address</h6><p>MAC（Medium/Media Access Control）地址，用来表示互联网上每一个站点的标识符，采用十六进制数表示（hexadecimal (base 16) notation<br>），共六个字节（48位）。</p>
+<h6 id="ARP协议-Address-Resolution-Protocol"><a href="#ARP协议-Address-Resolution-Protocol" class="headerlink" title="ARP协议(Address Resolution Protocol)"></a>ARP协议(Address Resolution Protocol)</h6><p>直白的说法是：在IP以太网中，当一个上层协议要发包时，有了该节点的IP地址，ARP就能提供该节点的MAC地址。 　</p>
+<p><code>Tips:</code> ARP协议只使用于局域网中,点对点的连接是不需要ARP协议的,ARP协议的基本功能就是通过目标设备的IP地址，查询目标设备的MAC地址，以保证通信的顺利进行。</p>
+<p> ARP协议的本质是完成网络地址到物理地址的映射。从概念上将就是找到一个映射方法f,使得“物理地址 = f(网络地址)“。物理地址有两种基本类型：以太网类型和令牌环网类型。网络地址特指IP地址，对映射方法的要求就是高效。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-4fe5fc647c53ce4d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=" "></p>
+<h6 id="Ethernet"><a href="#Ethernet" class="headerlink" title="Ethernet"></a>Ethernet</h6><p>我们可以将 802.3 局域网简称为“以太网”</p>
+<p><code>Tips:</code> 这里不做过多讲解，有兴趣可以翻阅查看以太网的帧结构，只需知道它所用的MAC协议是CSMA/CD就好</p>
+<h6 id="Link-Layer-Switches"><a href="#Link-Layer-Switches" class="headerlink" title="Link-Layer Switches"></a>Link-Layer Switches</h6><p>老师说不是重点，所以祝愿各位自学成才</p>
+<h5 id="Test-1"><a href="#Test-1" class="headerlink" title="Test"></a>Test</h5><p>Q: Where is the link layer implemented?</p>
+<p>A: in a network adapter.(network interface card,NIC).</p>
+<p>Q: LAN according to the topology which can be divided into several kinds?</p>
+<p>A: 总线结构、环型结构、星型结构、网状结构、树型结构以及混合型结构。</p>
+<p>Q: Why does the ARP query need to be sent in the broadcast frame?Why does the ARP response have to be sent in a frame containing a specific destination MAC address?</p>
+<p>A：ARP查询的目的是为了获取目标主机的物理地址，在网络通讯中，无明确地址的通讯只能通过广播方式来进行。因为ARP响应对象在收到ARP广播后向ARP广播机器反馈自己的MAC信息就需要向ARP广播方发送这个报文.而ARP广播方是已知道MAC地址的,所以反馈信息的时候会带上具体的MAC地址,如果该报文不带具体MAC地址的话,将会引起连绵不绝的网络风暴。</p>
+<hr>
+<p>没想到吧，你已经不知不觉看完了本书的许多重点，虽然你应该没懂多少，但效果还是有的对吧。少侠留步，还有一些无线网和移动网的知识我们没说，咱们下节继续。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-d45799e724d2d43c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<hr>
+<h4 id="Wireless-and-Mobile-Network"><a href="#Wireless-and-Mobile-Network" class="headerlink" title="Wireless and Mobile Network"></a>Wireless and Mobile Network</h4><p>喜大普奔，我们迎来了最后一章，是不是内心还有点小窃喜，废话说了很多，我们进入正题。</p>
+<p>无线网络（wireless network）是采用无线通信技术实现的网络。无线网络既包括允许用户建立远距离无线连接的全球语音和数据网络，也包括为近距离无线连接进行优化的红外线技术及射频技术，与有线网络的用途十分类似，最大的不同在于传输媒介的不同，利用无线电技术取代网线，可以和有线网络互为备份。</p>
+<p>无线网络的三个主要构成:</p>
+<ul>
+<li>Wireless hosts</li>
+<li>Wireless links</li>
+<li>Base station</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">特点：</span><br><span class="line">1、有线：需要设备之间使用网线连接，这样限制了设备之间的距离。</span><br><span class="line">2、无线：通过无线协议实现数据传输或者网络连接，一般室内50m范围内可以全方位传输数据。不过无线容易被电磁波干扰，而且墙壁对信号削弱也比较大。</span><br><span class="line">一般室内使用，建议直接无线。</span><br></pre></td></tr></table></figure>
+<p>无线网中极其重要的一个协议是CDMA，我们具体看看应用场景</p>
+<h5 id="WiFi-802-11-Wireless-LANs"><a href="#WiFi-802-11-Wireless-LANs" class="headerlink" title="WiFi: 802.11 Wireless LANs"></a>WiFi: 802.11 Wireless LANs</h5><p>IEEE 802.11是现今无线局域网通用的标准，两个设备可以自行构建临时网络，也可以在基站(<code>Base Station, BS</code>)或者接入点(<code>Access Point，AP</code>)的协调下通信。为了在不同的通讯环境下取得良好的通讯质量，采用<code>CSMA/CA(Carrier Sense Multiple Access／Collision Avoidance)</code>的硬件沟通方式</p>
+<p><code>Expands:</code> 802.11和Wi-Fi技术并不是同一个东西。Wi-Fi标准是802.11标准的一个子集，并且是Wi-Fi联盟负责管理</p>
+<p>WLAN有以下三种网络拓扑结构:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1) 独立基本服务集(Independent BSS, IBSS)网络(也叫ad-hoc网络)</span><br><span class="line">2) 基本服务集(Basic Service Set, BSS)网络</span><br><span class="line">3) 扩展服务集(Extent Service Set, ESS)网络</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>AD-Hoc网络</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-eee8a6e419526657.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>BSS网络</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-39f423d059d59b9a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>对于个人PC来说，使用最多的所谓”无线Wi-Fi”指的就是BSS网络模式，我们通过<code>AP(Access Point)</code>接入点来接入网络</p>
+<blockquote>
+<p>ESS网络</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-9403b86a5e2808df.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>其中，ESS中的DS(分布式系统)是一个抽象系统，用来连接不同BSS的通信信道(通过路由服务)，这样就可以消除BSS中STA与STA之间直接传输距离受到物理设备的限制。</p>
+<p><code>Tips:</code> 记住每一个AP都有一个SSID(Service Set Identifier),SSID技术可以将一个无线局域网分为几个需要不同身份验证的子网络，每一个子网络都需要独立的身份验证，只有通过身份验证的用户才可以进入相应的子网络，防止未被授权的用户进入本网络</p>
+<h5 id="Beyond-802-11-Bluetooth-and-WiMAX"><a href="#Beyond-802-11-Bluetooth-and-WiMAX" class="headerlink" title="Beyond 802.11:Bluetooth and WiMAX"></a>Beyond 802.11:Bluetooth and WiMAX</h5><p>蓝牙：802.15协议，WiMAX：802.16协议</p>
+<h5 id="Celluar-Internet-Access"><a href="#Celluar-Internet-Access" class="headerlink" title="Celluar Internet Access"></a>Celluar Internet Access</h5><p>蜂窝网络或移动网络(Cellular network)是一种移动通信硬件架构，把移动电话的服务区分为一个个正六边形的小子区，每个小区设一个基站，形成了形状酷似“蜂窝”的结构，因而把这种移动通信方式称为蜂窝移动通信方式。<br>蜂窝网络又可分为模拟蜂窝网络和数字蜂窝网络，主要区别于传输信息的方式。</p>
+<p>蜂窝网络组成主要有以下三部分：移动站，基站子系统，网络子系统。移动站就是网络终端设备，比如手机或者一些蜂窝工控设备。基站子系统包括移动基站（大铁塔）、无线收发设备、专用网络（一般是光纤）、无线的数字设备等等的。基站子系统可以看作是无线网络与有线网络之间的转换器。</p>
+<p>便于理解，我们以GSM网络为研究对象（找了半天，终于有张不错的图）<br><img src="http://upload-images.jianshu.io/upload_images/4784548-db0e892ec5fff13d.gif?imageMogr2/auto-orient/strip" alt=""></p>
+<p>我们来分析下构成</p>
+<p>GSM数字移动通信系统主要由<code>移动交换系统NSS</code>，<code>基站子系统BSS</code>，<code>维护操作子系统OMS</code>和<code>移动台MS</code>构成，下面具体描述各部分的功能。</p>
+<p>我们先从BSS看，BSS是NSS和MS之间的桥梁，主要完成无线通信管理和无线收发功能。BSS主要包括基站控制器BSC和基站收发信台BTS两个部分。</p>
+<ol>
+<li>BSC（Base Station Controller）:基站控制器，处理所有的与无线信号有关的工作：小区的切换、无线资源管理等。位于MSC与BTS之间，具有对一个或者多个BTS进行控制和管理的功能，主要完成无线信道的分配、BTS和MS发射功率的控制以及越区信道切换等功能。BSC也是一个小型的交换机，它把局部网络汇集后通过A接口与MSC相连。</li>
+<li>BTS（Base Transceiver Controller）：基站收发信机，负责无线信号的收发。基站子系统的无线收发设备，由BSC控制，主要负责无线传输功能，完成无线与有线的转换、无线分集、无线信道加密、跳频等功能。BTS通过Abis接口与BSC相连，通过空中接口Um与MS相连。此外BSS系统还包括编码变换和速率适配单元TRAU。TRAU通常位于BSC与MSC之间，主要完成16kbps的RPE-LTP编码和64kbps的A律PCM编码之间的码型变换。</li>
+</ol>
+<p>我们可以从图中看到，一个cell的构成由<code>Base station</code>，<code>Mobile user</code>，和<code>air-interface</code>三个部分参与</p>
+<p>再转而去看NSS中的MSC，<code>MSC（Mobile Service Switching Center）</code>：移动业务交换中心，GSM系统的核心,完成基本交换的动作和通讯连接，是一个重要接口</p>
+<p>其他部分不作详细描述</p>
+<hr>
+<h4 id="之前可能遗漏的知识点"><a href="#之前可能遗漏的知识点" class="headerlink" title="之前可能遗漏的知识点"></a>之前可能遗漏的知识点</h4><blockquote>
+<p>链路层提供的通信方式</p>
+</blockquote>
+<p>串行通讯的基本概念:与外界的信息交换称为通讯.基本的通讯方式有并行通讯和串行通讯两种.</p>
+<p>一条信息的各位数据被同时传送的通讯方式称为并行通讯.并行通讯的特点是:各数据位同时传送,传送速度快、效率高,但有多少数据位就需多少根数据线,因此传送成本高,且只适用于近距离(相距数米)的通讯.</p>
+<p>一条信息的各位数据被逐位按顺序传送的通讯方式称为串行通讯.串行通讯的特点是:数据位传送,传按位顺序进行,最少只需一根传输线即可完成,成本低但送速度慢.串行通讯的距离可以从几米到几千米.</p>
+<p>根据信息的传送方向,串行通讯可以进一步分为<code>单工、半双工和全双工三种</code>。<em>信息只能单向传送为单工;信息能双向传送但不能同时双向传送称为半双工;信息能够同时双向传送则称为全双工</em></p>
+<blockquote>
+<p>IP子网划分</p>
+</blockquote>
+<p>我们之前提到过ip地址划分为5类，在日常网络环境中，基本是都在使用B,C两大类地址，而ADE这3类地址都不大可<br>能被使用到。</p>
+<p>子网掩码的简单叙述：子网掩码是一个32位地址，用于屏蔽IP地址的一部分以区别网络标识和主机标识，并说明该IP地址是在局域网上，还是在远程网上。</p>
+<p>接下来我们可以看一下子网划分的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">假如给你一个C类的IP地址段：</span><br><span class="line">192.168.0.1-192.168.0.254，其中192.168.0 这个属于网络号码，而1～254表示这个网段中最大能容纳254台电脑主机。我们现在要做的就是把这254台主机再次划分一下，将它们区分开来。</span><br><span class="line"></span><br><span class="line">192.168.0.1-192.168.0.254默认使用的子网掩码为255.255.255.0，其中的0在2进制中表示，8个0.因此有8个位置没有被网络号码给占用，2的8次方就是表示有256个地址，去掉一个头（网络地址）和一个尾（主机地址），表示有254个电脑主机地址，因此我们想要对这254来划分的话，就是占用最后8个0中的某几位。</span><br><span class="line"></span><br><span class="line">假如占用第一个0.那么2进制表示的子网掩码为</span><br><span class="line">11111111.11111111.11111111.10000000。转换为10进制就为255.255.255.128，那么这时电脑主机应该为多少？其实很简单，就是2的7次方了(不再是原来的2的8次方了），2的7次方=128，因此假如子网掩码为255.255.255.128的话，这个C类地址可以被区分为2个网络，每个网络中最多</span><br><span class="line">有128台主机。 192.168.0.1-192.168.0.127为一个，192.168.0.128-192.168.0.255为第二个。</span><br><span class="line"></span><br><span class="line">再举个例子，假如还是C类地址，其IP范围为192.168.0.1-192.168.0.254，假如子网掩码255.255.255.192（也就是最后8为主机位，</span><br><span class="line">被占用了2位，2进制表示为11111111.11111111.11111111.11000000），</span><br><span class="line">那么这个网段的电脑主机数目就是2的6次方=64台，总共有2的2次方=4个网段。第一个网段为192.168.0.1-192.168.0.63，第二个网段为192.168.0.64-192.168.0.127，第三个网段为192.168.0.127-192.168.0.191，第四个</span><br><span class="line">网段为192.168.0.192-192.168.0.254。</span><br></pre></td></tr></table></figure>
+<p>如果你想结合实际情境去划分，请戳<a href="http://blog.chinaunix.net/uid-20788636-id-1841323.html" target="_blank" rel="noopener">Me</a></p>
+<h4 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h4><p>到此，我们整个计算机网络就学习完毕了，不知道你从中看懂了多少，反正我是不抱太大期望。笔者虽然从头写了一遍，零零散散加起来历时两天，这个过程比较辛苦但也比较值得。能看到许多自己智商急需充值的地方我还是很欣慰的。至于各位的领悟程度，我只能从内心祝福我的朋友们能考试顺利拿到高分（ji ge jiu hao）</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4784548-9b8ca7368c00f0ca.gif?imageMogr2/auto-orient/strip" alt=""></p>
+<p>另外对于其他的网友而言，你可以把它当作一篇由浅入深的笔记，里面网罗了许多知识，需要静静品读，勤加思考才会有充足的收获，切勿急躁，相信如果你全部理解，你一定是天纵之才！</p>
+<hr>
+<p>-End</p>
+<p>by:小栗子</p>
+<p>参考作者博文：<br><br><a href="http://blog.csdn.net/hongchh/article/details/52610639" target="_blank" rel="noopener">计算机网络层</a> / <a href="http://www.tuicool.com/articles/QfeqqmV" target="_blank" rel="noopener">传输层之多路复用与多路分解</a> / <a href="https://www.doraemonext.com/archives/653.html" target="_blank" rel="noopener">可靠数据传输原理（上）</a> / <a href="https://www.doraemonext.com/archives/702.html" target="_blank" rel="noopener">可靠数据传输原理（下）</a> / <br><br><a href="http://blog.csdn.net/u010126059/article/details/50428922" target="_blank" rel="noopener">计算机网络传输层</a> / <a href="http://blog.csdn.net/wisewolf_life/article/details/44900245" target="_blank" rel="noopener">网络层学习笔记</a> / <a href="http://blog.csdn.net/friendbkf/article/details/48808533" target="_blank" rel="noopener">LS和DV算法的比较</a> / <a href="http://blog.csdn.net/zhouwei1221q/article/details/45420223" target="_blank" rel="noopener">BGP讲解</a> / <a href="http://blog.csdn.net/chenyi8888/article/details/5313557" target="_blank" rel="noopener">多路访问协议</a> / <br><br><a href="http://blog.csdn.net/gscienty/article/details/44114743" target="_blank" rel="noopener">计算机网络数据链路层</a> / <a href="http://blog.csdn.net/tigerjibo/article/details/7351992" target="_blank" rel="noopener">ARP协议详解</a> / <a href="http://blog.csdn.net/u012152619/article/details/48545063" target="_blank" rel="noopener">局域网&amp;以太网</a> / <a href="http://blog.csdn.net/robertsong2004/article/details/42805803" target="_blank" rel="noopener">802.11协议帧</a> / <a href="http://blog.csdn.net/u011456016/article/details/51471971" target="_blank" rel="noopener">GSM网络结构</a> / <a href="http://www.cnblogs.com/jason-lu/articles/3171870.html" target="_blank" rel="noopener">串口扫盲</a></p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#计算机网络" >
+    <span class="tag-code">计算机网络</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2017/08/11/1502434126/">
+        <span class="nav-arrow">← </span>
+        
+          计算机网络笔记（二）
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2018/07/18/hello-world/">
+        
+          Hello World
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Network-Layer"><span class="toc-nav-text">Network Layer(!)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#网络层功能"><span class="toc-nav-text">网络层功能</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#网络层提供的两种服务"><span class="toc-nav-text">网络层提供的两种服务</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#虚电路网络-virtual-circuit-network"><span class="toc-nav-text">虚电路网络(virtual-circuit network)</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#数据报网络-datagram-network"><span class="toc-nav-text">数据报网络(datagram network)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#路由器结构-Router-architecture"><span class="toc-nav-text">路由器结构(Router architecture)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#IP部分"><span class="toc-nav-text">IP部分</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#Routing-Algorithms"><span class="toc-nav-text">Routing Algorithms</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#Hierarchical-routing"><span class="toc-nav-text">Hierarchical routing</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#因特网的路由协议"><span class="toc-nav-text">因特网的路由协议</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#Intra-AS-Routing-also-known-as-interior-gateway-protocols-IGP"><span class="toc-nav-text">Intra-AS Routing(also known as interior gateway protocols [IGP])</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#Intra-AS-Routing：BGP"><span class="toc-nav-text">Intra-AS Routing：BGP</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#Broadcast-and-Multicast-Routing"><span class="toc-nav-text">Broadcast and Multicast Routing</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#Test"><span class="toc-nav-text">Test</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Link-Layer-and-LAN"><span class="toc-nav-text">Link Layer and LAN</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#About-Service"><span class="toc-nav-text">About Service</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#Error-Detection-and-Correction-Techiniques-错误检测与纠正"><span class="toc-nav-text">Error-Detection and -Correction Techiniques(错误检测与纠正)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#错误检测"><span class="toc-nav-text">错误检测</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#Multiple-access-protocols"><span class="toc-nav-text">Multiple access protocols</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#信道划分"><span class="toc-nav-text">信道划分</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#随机接入"><span class="toc-nav-text">随机接入</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#轮流协议"><span class="toc-nav-text">轮流协议</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#link-Layer-Addressing"><span class="toc-nav-text">link-Layer Addressing</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#MAC-address"><span class="toc-nav-text">MAC address</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#ARP协议-Address-Resolution-Protocol"><span class="toc-nav-text">ARP协议(Address Resolution Protocol)</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#Ethernet"><span class="toc-nav-text">Ethernet</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#Link-Layer-Switches"><span class="toc-nav-text">Link-Layer Switches</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#Test-1"><span class="toc-nav-text">Test</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Wireless-and-Mobile-Network"><span class="toc-nav-text">Wireless and Mobile Network</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#WiFi-802-11-Wireless-LANs"><span class="toc-nav-text">WiFi: 802.11 Wireless LANs</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#Beyond-802-11-Bluetooth-and-WiMAX"><span class="toc-nav-text">Beyond 802.11:Bluetooth and WiMAX</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#Celluar-Internet-Access"><span class="toc-nav-text">Celluar Internet Access</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#之前可能遗漏的知识点"><span class="toc-nav-text">之前可能遗漏的知识点</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Summary"><span class="toc-nav-text">Summary</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2017/08/15/1502779732/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "Kelier";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "计算机网络笔记（三）",
+        owner: "Kelier",
+        repo: "Kelier.github.io",
+        oauth: {
+          client_id: "11d7bd9876d36e9148ff",
+          client_secret: "aae671db5a526df7056c6a1a2441f01cdddb0b3d"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/kelier">kelier</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>

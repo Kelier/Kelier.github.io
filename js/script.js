@@ -100,7 +100,7 @@
       catalog.removeClass('fixed-toc')
     }
   })
-
+/*
   document.onkeydown=function(e){
     var keyNum = window.event ? e.keyCode : e.which;
     if (!document.querySelector('.showemoji')) {
@@ -125,5 +125,5 @@
       emoji.className = 'hideemoji';
     }
   };
-
+*/
 })(jQuery)

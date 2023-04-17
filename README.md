@@ -18,7 +18,7 @@
 
 
 
-###### [2018-summary](https://app.netlify.com/sites/2018summary)
+###### [2018-summary](https://2018summary.netlify.app/)
 
 
 
